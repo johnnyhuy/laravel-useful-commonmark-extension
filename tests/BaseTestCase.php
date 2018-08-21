@@ -6,8 +6,8 @@ namespace JohnnyHuy\Laravel\Markdown\Tests;
 
 use GrahamCampbell\Markdown\MarkdownServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
-use JohnnyHuy\Laravel\MarkdownExtension;
-use JohnnyHuy\Laravel\MarkdownExtensionServiceProvider;
+use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
+use JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider;
 
 class BaseTestCase extends AbstractPackageTestCase
 {
@@ -21,7 +21,7 @@ class BaseTestCase extends AbstractPackageTestCase
     protected function getEnvironmentSetUp($app)
     {
         parent::getEnvironmentSetUp($app);
-        $app->config->set('markdown.extensions', [MarkdownExtension::class]);
+        $app->config->set('markdown.extensions', [UsefulCommonMarkExtension::class]);
     }
 
     /**
@@ -44,6 +44,6 @@ class BaseTestCase extends AbstractPackageTestCase
      */
     protected function getServiceProviderClass($app)
     {
-        return MarkdownExtensionServiceProvider::class;
+        return UsefulCommonMarkExtensionServiceProvider::class;
     }
 }

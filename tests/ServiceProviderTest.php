@@ -7,7 +7,7 @@ namespace JohnnyHuy\Laravel\Markdown\Tests;
 use GrahamCampbell\TestBenchCore\LaravelTrait;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
-use JohnnyHuy\Laravel\MarkdownExtension;
+use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use League\CommonMark\Environment;
 
 class ServiceProviderTest extends BaseTestCase
@@ -22,7 +22,7 @@ class ServiceProviderTest extends BaseTestCase
 
     public function testMarkdownExtensionIsInjectable()
     {
-        $this->assertIsInjectable(MarkdownExtension::class);
+        $this->assertIsInjectable(UsefulCommonMarkExtension::class);
     }
 
     public function testEnvironmentIsSetup()

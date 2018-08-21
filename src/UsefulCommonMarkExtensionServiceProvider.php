@@ -19,11 +19,11 @@ use Illuminate\Support\ServiceProvider;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 
 /**
- * This is the emoji service provider class.
+ * This is the CommonMark useful extension service provider class.
  *
- * @author Graham Campbell <graham@alt-three.com>
+ * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class MarkdownExtensionServiceProvider extends ServiceProvider
+class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.
