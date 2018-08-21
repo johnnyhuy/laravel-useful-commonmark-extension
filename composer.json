@@ -1,7 +1,7 @@
 {
-    "name": "johnnyhuy/laravel-markdown-extensions",
-    "description": "Laravel Markdown extensions for Laravel 5",
-    "keywords": ["youtube", "php", "laravel", "markdown"],
+    "name": "johnnyhuy/laravel-useful-commonmark-extension",
+    "description": "Laravel useful CommonMark extension for Laravel 5.5+",
+    "keywords": ["youtube", "php", "laravel", "markdown", "commonmark", "phpleague", "laravel-package"],
     "license": "MIT",
     "authors": [
         {
