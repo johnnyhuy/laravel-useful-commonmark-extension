@@ -27,7 +27,7 @@ use League\CommonMark\Extension\Extension;
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class MarkdownExtension extends Extension
+class UsefulCommonMarkExtension extends Extension
 {
     /**
      * @var array
