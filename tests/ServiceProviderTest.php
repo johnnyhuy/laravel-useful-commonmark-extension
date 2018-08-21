@@ -6,10 +6,16 @@ namespace JohnnyHuy\Laravel\Markdown\Tests;
 
 use GrahamCampbell\TestBenchCore\LaravelTrait;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
+use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use League\CommonMark\Environment;
 
+/**
+ * CommonMark Laravel service provider tests
+ *
+ * @author Johnny Huynh <info@johnnyhuy.com>
+ */
 class ServiceProviderTest extends BaseTestCase
 {
     use LaravelTrait;
@@ -25,8 +31,17 @@ class ServiceProviderTest extends BaseTestCase
         $this->assertIsInjectable(UsefulCommonMarkExtension::class);
     }
 
-    public function testEnvironmentIsSetup()
+    public function testExtensionIsInstalled()
     {
-        $this->assertTrue(in_array(resolve(YouTubeParser::class), resolve(Environment::class)->getInlineParsers(), true));
+        $this->assertTrue(in_array(new UsefulCommonMarkExtension($this->app), $this->app->get(Environment::class)->getExtensions()));
+    }
+
+    public function testInjectParsers()
+    {
+        /** @var Environment $environment */
+        $environment = $this->app->get(Environment::class);
+
+        $this->assertTrue(in_array(resolve(YouTubeParser::class), $environment->getInlineParsers(), true));
+        $this->assertTrue(in_array(resolve(TextAlignmentParser::class), $environment->getBlockParsers(), true));
     }
 }

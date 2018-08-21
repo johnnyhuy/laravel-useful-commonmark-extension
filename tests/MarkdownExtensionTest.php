@@ -8,7 +8,7 @@ use League\CommonMark\DocParser;
 use PhpParser\Comment\Doc;
 
 /**
- * Markdown Extensions test
+ * CommonMak markdown extension test
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
