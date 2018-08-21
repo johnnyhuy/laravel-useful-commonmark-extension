@@ -1,5 +1,6 @@
 # Laravel Useful CommonMark Extension
 
+[![Build Status](https://travis-ci.com/johnnyhuy/laravel-useful-commonmark-extension.svg?branch=master)](https://travis-ci.com/johnnyhuy/laravel-useful-commonmark-extension)
 [![Latest Stable Version](https://poser.pugx.org/johnnyhuy/laravel-useful-commonmark-extension/version)](https://packagist.org/packages/johnnyhuy/laravel-useful-commonmark-extension)
 [![Total Downloads](https://poser.pugx.org/johnnyhuy/laravel-useful-commonmark-extension/downloads)](https://packagist.org/packages/johnnyhuy/laravel-useful-commonmark-extension)
 [![composer.lock available](https://poser.pugx.org/johnnyhuy/laravel-useful-commonmark-extension/composerlock)](https://packagist.org/packages/johnnyhuy/laravel-useful-commonmark-extension)
