@@ -23,7 +23,7 @@ use JohnnyHuy\Laravel\Inline\Renderer\YouTubeRenderer;
 use League\CommonMark\Extension\Extension;
 
 /**
- * This is the emoji extension class.
+ * This is the useful CommonMark extension class.
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
