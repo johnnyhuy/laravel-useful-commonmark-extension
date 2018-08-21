@@ -34,7 +34,7 @@ JohnnyHuy\Laravel\UsefulCommonMarkExtension
 Clone this repository and run `composer install` to install all relevant Composer packages. Change the root extension directory and run the following command to execute PHPUnit test cases.
 
 ```bash
-$ vendor/bin/phpunit
+$ vendor/bin/phpunit tests/
 ```
 
 ## Contribution
