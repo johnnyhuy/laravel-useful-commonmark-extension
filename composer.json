@@ -1,7 +1,6 @@
 {
     "name": "johnnyhuy/laravel-useful-commonmark-extension",
     "type": "library",
-    "version": "1.0.0",
     "description": "Laravel useful CommonMark extension for Laravel 5.5+",
     "keywords": ["youtube", "php", "laravel", "markdown", "commonmark", "phpleague", "laravel-package"],
     "license": "MIT",
