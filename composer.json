@@ -12,6 +12,12 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/johnnyhuy/laravel-useful-commonmark-extension"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "illuminate/contracts": "5.5.*|5.6.*",
