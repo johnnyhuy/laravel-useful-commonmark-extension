@@ -7,6 +7,15 @@
 
 A Laravel PHP Composer packaged of useful CommonMark extensions for The PHP Leagues [CommonMark implementation](https://github.com/thephpleague/commonmark).
 
+## Wiki
+
+I've composed a wiki page to describe features of this extension.
+
+### Added Markdown features
+
+- [YouTube](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/YouTube)
+- [Text Alignment](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Text-Alignment)
+
 ## Getting started
 
 Instructions to install this extension to your Laravel project.
