@@ -18,16 +18,38 @@ Instructions to install this extension to your Laravel project.
 
 ### Installation
 
+Follow these steps to get this CommonMark extension working in your Laravel project!
+
+#### Installing the Composer package
+
 Run the following command at your root Laravel project directory (where `package.json` exists).
 
 ```bash
 $ composer require johnnyhuy/laravel-commonmark-useful-extensions
 ```
 
-If automatic package discovery is not enabled in your project, add the following line to register the service provider in your `config/app.php`.
+#### Adding the Markdown extension to a config
 
-```bash
-JohnnyHuy\Laravel\UsefulCommonMarkExtension
+Add `JohnnyHuy\Laravel\UsefulCommonMarkExtension::class` in `config/markdown.php` in the `extensions` array. Here's an example:
+
+```php
+'extensions' => [
+    ...
+    JohnnyHuy\Laravel\UsefulCommonMarkExtension::class
+    ...
+],
+```
+
+#### (Optional) Adding the service provider to app config
+
+If automatic package discovery is not enabled in your project, add the following line to register the service provider in your `config/app.php`. Here's an example:
+
+```php
+'providers' => [
+    ...
+    JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider::class,
+    ...
+],
 ```
 
 ## Running the tests
