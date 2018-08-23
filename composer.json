@@ -49,7 +49,7 @@
         },
         "laravel": {
             "providers": [
-                "JohnnyHuy\\Laravel\\MarkdownServiceProvider"
+                "JohnnyHuy\\Laravel\\UsefulCommonMarkExtensionServiceProvider"
             ]
         }
     },
