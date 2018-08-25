@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JohnnyHuy\Laravel\Markdown\Tests;
+namespace JohnnyHuy\Laravel\Markdown\Tests\Laravel;
 
 use GrahamCampbell\TestBenchCore\LaravelTrait;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use League\CommonMark\Environment;
 

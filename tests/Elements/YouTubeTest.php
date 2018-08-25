@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace JohnnyHuy\Laravel\Markdown\Tests;
+namespace JohnnyHuy\Laravel\Markdown\Tests\Elements;
 
-use League\CommonMark\DocParser;
-use PhpParser\Comment\Doc;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 
 /**
  * CommonMak markdown extension test
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class MarkdownExtensionTest extends BaseTestCase
+class YouTubeTest extends BaseTestCase
 {
-    public function successfulYouTubeStrings()
+    public function successfulStrings()
     {
         $expected = '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs" type="text/html" frameborder="0"></iframe></span></p>';
 
@@ -28,11 +27,16 @@ class MarkdownExtensionTest extends BaseTestCase
         ];
     }
 
-    public function failedYouTubeStrings()
+    public function failedStrings()
     {
         return [
+            // YouTube keyword is not separated with a space
             [':youtubehttps://www.youtube.com/watch?v=USL6P8haroY', '<p>:youtubehttps://www.youtube.com/watch?v=USL6P8haroY</p>'],
+
+            // Didn't include the ':youtube' keyword
             ['https://www.youtube.com/watch?v=USL6P8haroY', '<p>https://www.youtube.com/watch?v=USL6P8haroY</p>'],
+
+            // Invalid YouTube URLs
             [':youtube https//www.youtube.com/watch?v=USL6P8haroY', '<p>:youtube https//www.youtube.com/watch?v=USL6P8haroY</p>'],
             [':youtube httpswww.youtube.com/watch?v=USL6P8haroY', '<p>:youtube httpswww.youtube.com/watch?v=USL6P8haroY</p>'],
             [':youtube .youtube.com/watch?v=USL6P8haroY', '<p>:youtube .youtube.com/watch?v=USL6P8haroY</p>'],
@@ -41,39 +45,22 @@ class MarkdownExtensionTest extends BaseTestCase
         ];
     }
 
-    public function successfulTextAlignmentStrings()
-    {
-        return [
-            [":text-right\n# Heading\n\n**bold text**\ntest\n:text-right\ntest", "<section style=\"text-align: right\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"]
-        ];
-    }
-
     /**
-     * @dataProvider successfulYouTubeStrings
+     * @dataProvider successfulStrings
      * @param $input
      * @param $output
      */
-    public function testShouldRenderYouTube($input, $output)
+    public function testShouldRender($input, $output)
     {
         $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
     }
 
     /**
-     * @dataProvider failedYouTubeStrings
+     * @dataProvider failedStrings
      * @param $input
      * @param $output
      */
-    public function testShouldNotRenderYouTube($input, $output)
-    {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
-    }
-
-    /**
-     * @dataProvider successfulTextAlignmentStrings
-     * @param $input
-     * @param $output
-     */
-    public function testShouldRenderTextAlignment($input, $output)
+    public function testShouldNotRender($input, $output)
     {
         $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
     }
