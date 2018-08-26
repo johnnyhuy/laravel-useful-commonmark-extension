@@ -43,7 +43,7 @@ class SoundCloudRenderer implements InlineRendererInterface, ConfigurationAwareI
 
         $oEmbed = json_decode($oEmbed);
 
-        return new HtmlElement('span', ['class' => 'soundcloud-audio'], $oEmbed->html);
+        return $oEmbed->html;
     }
 
     /**
