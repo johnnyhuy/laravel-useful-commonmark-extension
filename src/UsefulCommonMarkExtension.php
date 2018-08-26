@@ -17,8 +17,11 @@ use Illuminate\Container\Container;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
 use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
 use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
+use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
+use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
 use JohnnyHuy\Laravel\Inline\Renderer\YouTubeRenderer;
 use League\CommonMark\Extension\Extension;
 
@@ -58,10 +61,12 @@ class UsefulCommonMarkExtension extends Extension
     {
         $this->inlineParsers = [
             $container->make(YouTubeParser::class),
+            $container->make(SoundCloudParser::class),
         ];
 
         $this->inlineRenderers = [
             YouTube::class => $container->make(YouTubeRenderer::class),
+            SoundCloud::class => $container->make(SoundCloudRenderer::class),
         ];
 
         $this->blockParsers = [

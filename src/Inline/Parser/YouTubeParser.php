@@ -21,7 +21,7 @@ class YouTubeParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        $regex = '/^youtube\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&#\s\?]+)(?:\?.[^\s]+)?/';
+        $regex = '/^(?:youtube)\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&#\s\?]+)(?:\?.[^\s]+)?/';
         $validate = $cursor->match($regex);
 
         if (!$validate) {

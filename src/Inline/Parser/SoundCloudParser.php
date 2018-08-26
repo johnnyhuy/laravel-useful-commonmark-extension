@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
@@ -21,7 +22,7 @@ class SoundCloudParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        $regex = '/^(?:soundcloud|sc)\s(?:https?\:\/\/)?(?:www\.)?(?:soundcloud\.com\/)([^&#\s\?]+\/[^&#\s\?]+)/';
+        $regex = '/^(?:soundcloud|sc)\s((?:https?\:\/\/)?(?:www\.)?(?:soundcloud\.com\/)([^&#\s\?]+\/[^&#\s\?]+))/';
         $validate = $cursor->match($regex);
 
         if (!$validate) {
@@ -30,11 +31,7 @@ class SoundCloudParser extends AbstractInlineParser
             return false;
         }
 
-        $matches = [];
-        preg_match($regex, $validate, $matches);
-        $userTrack = $matches[0];
-
-        $inlineContext->getContainer()->appendChild(new YouTube("https://www.youtube.com/embed/$userTrack"));
+        $inlineContext->getContainer()->appendChild(new SoundCloud(ltrim($validate, 'soundcloud ')));
 
         return true;
     }
