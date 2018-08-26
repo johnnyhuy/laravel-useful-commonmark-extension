@@ -22,7 +22,7 @@ class SoundCloudParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        $regex = '/^(?:soundcloud|sc)\s((?:https?\:\/\/)?(?:www\.)?(?:soundcloud\.com\/)([^&#\s\?]+\/[^&#\s\?]+))/';
+        $regex = '/^(?:soundcloud|sc)\s((?:https?\:\/\/)?(?:www\.)?(?:soundcloud\.com\/)[^&#\s\?]+\/[^&#\s\?]+)/';
         $validate = $cursor->match($regex);
 
         if (!$validate) {
@@ -31,7 +31,10 @@ class SoundCloudParser extends AbstractInlineParser
             return false;
         }
 
-        $inlineContext->getContainer()->appendChild(new SoundCloud(ltrim($validate, 'soundcloud ')));
+        $matches = [];
+        preg_match($regex, $validate, $matches);
+
+        $inlineContext->getContainer()->appendChild(new SoundCloud($matches[1]));
 
         return true;
     }
