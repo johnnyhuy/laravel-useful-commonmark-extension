@@ -11,37 +11,37 @@ use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class YouTubeTest extends BaseTestCase
+class SoundCloudTest extends BaseTestCase
 {
     public function successfulStrings()
     {
-        $expected = '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs" type="text/html" frameborder="0"></iframe></span></p>';
+        $expected = '<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/489177243&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>';
 
         return [
-            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs', $expected],
-            [':youtube https://www.youtube.com/watch?v=52c_QSg64fs', $expected],
-            [':youtube http://youtube.com/watch?v=52c_QSg64fs', $expected],
-            [':youtube youtube.com/watch?v=52c_QSg64fs', $expected],
-            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs?t=10s', $expected],
-            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs?t=10s&something=123123123SDqweas', $expected],
+            [':soundcloud http://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', $expected],
+            [':soundcloud https://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', $expected],
+            [':soundcloud http://soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', $expected],
+            [':soundcloud soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', $expected],
+            [':soundcloud http://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix?t=10s', $expected],
+            [':soundcloud http://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix?t=10s&something=123123123SDqweas', $expected],
         ];
     }
 
     public function failedStrings()
     {
         return [
-            // YouTube keyword is not separated with a space
-            [':youtubehttps://www.youtube.com/watch?v=USL6P8haroY', '<p>:youtubehttps://www.youtube.com/watch?v=USL6P8haroY</p>'],
+            // Soundcloud keyword is not separated with a space
+            [':soundcloudhttps://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloudhttps://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
 
-            // Didn't include the ':youtube' keyword
-            ['https://www.youtube.com/watch?v=USL6P8haroY', '<p>https://www.youtube.com/watch?v=USL6P8haroY</p>'],
+            // Didn't include the ':soundcloud' keyword
+            ['https://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>https://www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
 
-            // Invalid YouTube URLs
-            [':youtube https//www.youtube.com/watch?v=USL6P8haroY', '<p>:youtube https//www.youtube.com/watch?v=USL6P8haroY</p>'],
-            [':youtube httpswww.youtube.com/watch?v=USL6P8haroY', '<p>:youtube httpswww.youtube.com/watch?v=USL6P8haroY</p>'],
-            [':youtube .youtube.com/watch?v=USL6P8haroY', '<p>:youtube .youtube.com/watch?v=USL6P8haroY</p>'],
-            [':youtube .com/watch?v=USL6P8haroY', '<p>:youtube .com/watch?v=USL6P8haroY</p>'],
-            [':youtube poop.com/watch?v=USL6P8haroY', '<p>:youtube poop.com/watch?v=USL6P8haroY</p>'],
+            // Invalid Soundcloud URLs
+            [':soundcloud https//www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloud https//www.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
+            [':soundcloud httpswww.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloud httpswww.soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
+            [':soundcloud .soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloud .soundcloud.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
+            [':soundcloud .com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloud .com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
+            [':soundcloud poop.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix', '<p>:soundcloud poop.com/koni_music/marshmello-x-bastille-happier-koni-feat-andrea-hamilton-cover-remix</p>'],
         ];
     }
 

@@ -17,6 +17,7 @@ use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 
 /**
@@ -69,12 +70,9 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
      */
     protected function registerParser()
     {
-        $this->app->singleton(YouTubeParser::class, function () {
-            return new YouTubeParser();
-        });
-        $this->app->singleton(TextAlignmentParser::class, function () {
-            return new TextAlignmentParser();
-        });
+        $this->app->singleton(YouTubeParser::class, function () { return new YouTubeParser(); });
+        $this->app->singleton(SoundCloudParser::class, function () { return new SoundCloudParser(); });
+        $this->app->singleton(TextAlignmentParser::class, function () { return new TextAlignmentParser(); });
     }
 
     /**

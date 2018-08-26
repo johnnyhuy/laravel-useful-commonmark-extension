@@ -2,6 +2,7 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
@@ -23,22 +24,26 @@ class SoundCloudRenderer implements InlineRendererInterface, ConfigurationAwareI
      * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
      *
      * @return \League\CommonMark\HtmlElement|string
+     * @throws \ErrorException
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
-        if (!($inline instanceof YouTube)) {
+        if (!($inline instanceof SoundCloud)) {
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
-        $iframe = new HtmlElement('iframe', [
-            'width' => 640,
-            'height' => 390,
-            'src' => $inline->getUrl(),
-            'type' => "text/html",
-            'frameborder' => 0,
-        ]);
+        $url = "https://soundcloud.com/oembed?&format=json&url={$inline->getUrl()}&maxheight=166";
 
-        return new HtmlElement('span', ['class' => 'soundcloud-audio'], $iframe);
+        // Use a oEmbed route to get SoundCloud details
+        $oEmbed = file_get_contents($url);
+
+        if (is_null($oEmbed)) {
+            throw new \ErrorException('SoundCloud request returned null: ' . $url);
+        }
+
+        $oEmbed = json_decode($oEmbed);
+
+        return new HtmlElement('span', ['class' => 'soundcloud-audio'], $oEmbed->html);
     }
 
     /**
