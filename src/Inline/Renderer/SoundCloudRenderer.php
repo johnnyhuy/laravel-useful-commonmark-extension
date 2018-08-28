@@ -12,7 +12,7 @@ use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
 
-class SoundCloudRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class SoundCloudRenderer implements InlineRendererInterface
 {
     /**
      * @var Configuration
@@ -32,25 +32,25 @@ class SoundCloudRenderer implements InlineRendererInterface, ConfigurationAwareI
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
-        $url = "https://soundcloud.com/oembed?&format=json&url={$inline->getUrl()}&maxheight=166";
-
         // Use a oEmbed route to get SoundCloud details
-        $oEmbed = file_get_contents($url);
+        $url = "https://soundcloud.com/oembed?&format=json&url={$inline->getUrl()}&maxheight=166";
+        $soundCloud = $this->getContent($url);
 
-        if (is_null($oEmbed)) {
+        if (is_null($soundCloud)) {
             throw new \ErrorException('SoundCloud request returned null: ' . $url);
         }
 
-        $oEmbed = json_decode($oEmbed);
+        $soundCloud = json_decode($soundCloud);
 
-        return $oEmbed->html;
+        return $soundCloud->html;
     }
 
     /**
-     * @param Configuration $configuration
+     * @param string $url
+     * @return string
      */
-    public function setConfiguration(Configuration $configuration)
+    public function getContent(string $url): string
     {
-        $this->config = $configuration;
+        return file_get_contents($url);
     }
 }

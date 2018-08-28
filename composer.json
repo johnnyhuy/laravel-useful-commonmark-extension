@@ -29,7 +29,8 @@
         "graham-campbell/analyzer": "^2.0",
         "graham-campbell/markdown": "^10.0",
         "graham-campbell/testbench": "^5.0",
-        "phpunit/phpunit": "^6.5|^7.0"
+        "phpunit/phpunit": "^6.5|^7.0",
+        "mockery/mockery": "dev-master"
     },
     "autoload": {
         "psr-4": {
