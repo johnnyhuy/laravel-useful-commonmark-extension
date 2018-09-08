@@ -25,11 +25,11 @@
         "league/commonmark": "^0.17"
     },
     "require-dev": {
+        "mockery/mockery": "^1.1",
         "graham-campbell/analyzer": "^2.0",
         "graham-campbell/markdown": "^10.0",
         "graham-campbell/testbench": "^5.0",
-        "phpunit/phpunit": "^7.0",
-        "mockery/mockery": "dev-master"
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
