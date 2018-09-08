@@ -36,7 +36,6 @@ class TextAlignmentParser extends AbstractBlockParser
             return false;
         }
 
-
         // Find the next TextAlignment container as we go up in parent nodes
         do {
             if ($container instanceof TextAlignment) {

@@ -6,7 +6,7 @@ namespace JohnnyHuy\Laravel\Markdown\Tests\Laravel;
 
 use GrahamCampbell\TestBenchCore\LaravelTrait;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
-use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Block\Parser\ColorParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
@@ -43,6 +43,6 @@ class ServiceProviderTest extends BaseTestCase
         $environment = $this->app->get(Environment::class);
 
         $this->assertTrue(in_array(resolve(YouTubeParser::class), $environment->getInlineParsers(), true));
-        $this->assertTrue(in_array(resolve(TextAlignmentParser::class), $environment->getBlockParsers(), true));
+        $this->assertTrue(in_array(resolve(ColorParser::class), $environment->getBlockParsers(), true));
     }
 }
