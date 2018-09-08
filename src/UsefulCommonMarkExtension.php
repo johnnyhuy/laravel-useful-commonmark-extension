@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace JohnnyHuy\Laravel;
 
 use Illuminate\Container\Container;
+use JohnnyHuy\Laravel\Block\Element\Color;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
+use JohnnyHuy\Laravel\Block\Parser\ColorParser;
 use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Block\Renderer\ColorRenderer;
 use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
 use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
@@ -62,10 +65,12 @@ class UsefulCommonMarkExtension extends Extension
 
         $this->blockParsers = [
             $container->make(TextAlignmentParser::class),
+            $container->make(ColorParser::class),
         ];
 
         $this->blockRenderers = [
             TextAlignment::class => $container->make(TextAlignmentRenderer::class),
+            Color::class => $container->make(ColorRenderer::class),
         ];
     }
 

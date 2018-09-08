@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace JohnnyHuy\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Block\Parser\ColorParser;
 use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 
@@ -35,7 +35,7 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
     {
         $this->app->singleton(YouTubeParser::class, function () { return new YouTubeParser(); });
         $this->app->singleton(SoundCloudParser::class, function () { return new SoundCloudParser(); });
-        $this->app->singleton(TextAlignmentParser::class, function () { return new TextAlignmentParser(); });
+        $this->app->singleton(ColorParser::class, function () { return new ColorParser(); });
     }
 
     /**

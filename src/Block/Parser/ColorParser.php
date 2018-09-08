@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Block\Parser;
 
+use JohnnyHuy\Laravel\Block\Element\Color;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
 use League\CommonMark\Block\Parser\AbstractBlockParser;
 use League\CommonMark\ContextInterface;
@@ -14,7 +15,7 @@ use League\CommonMark\Cursor;
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class TextAlignmentParser extends AbstractBlockParser
+class ColorParser extends AbstractBlockParser
 {
     /**
      * @param ContextInterface $context
@@ -28,7 +29,7 @@ class TextAlignmentParser extends AbstractBlockParser
         }
 
         $savedState = $cursor->saveState();
-        $match = $cursor->match('/^\:text\-(right|left|center)$/');
+        $match = $cursor->match('/^\:(?:color|colour)(\s(?:(\#?([A-z0-9]{6})|\d{3}\,\s?\d{3}\,\s?\d{3}(\,\s?\d{3})?)|[A-z]+))?$/');
         $container = $context->getContainer();
 
         if (is_null($match)) {
@@ -36,9 +37,8 @@ class TextAlignmentParser extends AbstractBlockParser
             return false;
         }
 
-        // Find the next TextAlignment container as we go up in parent nodes
         do {
-            if ($container instanceof TextAlignment) {
+            if ($container instanceof Color) {
                 $context->setContainer($container);
                 $container->finalize($context, $context->getLineNumber());
                 $context->getBlockCloser()->setLastMatchedContainer($container);
@@ -47,8 +47,11 @@ class TextAlignmentParser extends AbstractBlockParser
             }
         } while ($container = $container->parent());
 
-        $block = new TextAlignment();
-        $block->data['direction'] = ltrim($match, ':text-');
+        $block = new Color();
+
+        // Trim off the :color segment
+        $block->data['color'] = preg_split("/^\:(?:color|colour)\s/", $match)[1];
+
         $context->addBlock($block);
 
         return true;
