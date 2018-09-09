@@ -15,7 +15,7 @@ I've composed a wiki page to describe features of this extension.
 
 #### SoundCloud
 
-```bash
+```markdown
 :soundcloud https://soundcloud.com/djtechnoboy/tnt-sound-rush-right-now
 ```
 
@@ -23,7 +23,7 @@ I've composed a wiki page to describe features of this extension.
 
 #### YouTube
 
-```bash
+```markdown
 :youtube https://www.youtube.com/watch?v=pwmY1XUTBpE
 ```
 
@@ -31,7 +31,7 @@ I've composed a wiki page to describe features of this extension.
 
 #### Color
 
-```bash
+```markdown
 # Worded colors
 :color red
 Hello I should be in red text :D
@@ -57,15 +57,18 @@ Hello I should be in red text :D
 
 #### Text Alignment
 
-```bash
+```markdown
+# Center alignment
 :text-center
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
 :text-center
 
+# Right alignment
 :text-right
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
 :text-right
 
+# Left alignment
 :text-left
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
 :text-left
