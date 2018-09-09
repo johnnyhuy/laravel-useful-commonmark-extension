@@ -51,7 +51,6 @@ Hello!
 :color 255,255,255
 Hello!
 :color
-```
 
 # RGBA
 :color 255,255,255,50
