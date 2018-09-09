@@ -39,17 +39,17 @@ Hello I should be in red text :D
 
 # 3 Character hex
 :color #AAA
-Hello I should be in red text :D
+Hello!
 :color
 
 # 6 Character hex
 :color #DADADA
-Hello I should be in red text :D
+Hello!
 :color
 
 # RGBA
 :color 255,255,255,50
-Hello I should be in red text :D
+Hello!
 :color
 ```
 
