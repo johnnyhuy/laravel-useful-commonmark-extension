@@ -32,9 +32,11 @@ class ColorRenderer implements BlockRendererInterface
         }
 
         $match = [];
-        if (preg_match("/^\d{3}\,\s?\d{3}\,\s?\d{3}(\,\s?\d{3})?$/", $block->data['color'], $match)) {
-            $color = $match[0];
-        } else if (preg_match("/^[A-z]+$/", $block->data['color'], $match)) {
+        if (preg_match("/^\d{1,3}\,\s?\d{1,3}\,\s?\d{1,3}$/", $block->data['color'], $match)) {
+            $color = "rgb($match[0])";
+        } else if (preg_match("/^\d{1,3}\,\s?\d{1,3}\,\s?\d{1,3},\s?\d{1,3}$/", $block->data['color'], $match)) {
+            $color = "rgba($match[0])";
+        } else if (preg_match("/^\#?[A-z]+$/", $block->data['color'], $match)) {
             $color = $match[0];
         } else {
             throw new \InvalidArgumentException('Incompatible color type: ' . $block->data['color']);

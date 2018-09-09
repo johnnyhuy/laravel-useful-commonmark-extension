@@ -29,7 +29,7 @@ class ColorParser extends AbstractBlockParser
         }
 
         $savedState = $cursor->saveState();
-        $match = $cursor->match('/^\:(?:color|colour)(\s(?:(\#?([A-z0-9]{6})|\d{3}\,\s?\d{3}\,\s?\d{3}(\,\s?\d{3})?)|[A-z]+))?$/');
+        $match = $cursor->match('/^\:(?:color|colour)(\s(?:(\#?[A-z]+|\d{1,3}\,\s?\d{1,3}\,\s?\d{1,3}(\,\s?\d{1,3})?)))?$/');
         $container = $context->getContainer();
 
         if (is_null($match)) {
