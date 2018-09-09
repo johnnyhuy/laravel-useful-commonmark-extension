@@ -47,11 +47,16 @@ class ColorParser extends AbstractBlockParser
             }
         } while ($container = $container->parent());
 
-        $block = new Color();
 
         // Trim off the :color segment
-        $block->data['color'] = preg_split("/^\:(?:color|colour)\s/", $match)[1];
+        $color = preg_split("/^\:(?:color|colour)\s/", $match);
 
+        if (!array_key_exists(1, $color)) {
+            return false;
+        }
+
+        $block = new Color();
+        $block->data['color'] = $color[1];
         $context->addBlock($block);
 
         return true;
