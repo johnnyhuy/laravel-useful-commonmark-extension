@@ -18,7 +18,8 @@ class ColorTest extends BaseTestCase
         return [
             [":color red\n# Heading\n\n**bold text**\ntest\n:color\ntest", "<section style=\"color: red\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"],
             [":color 155,123,422\n# Heading\n\n**bold text**\ntest\n:color 155,123,422\ntest", "<section style=\"color: rgb(155,123,422)\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"],
-            [":color 155,123,422,50\n# Heading\n\n**bold text**\ntest\n:color 155,123,422,50\ntest", "<section style=\"color: rgb(155,123,422)\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"],
+            [":color 155,123,422,50\n# Heading\n\n**bold text**\ntest\n:color 155,123,422,50\ntest", "<section style=\"color: rgb(155,123,422,50)\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"],
+            [":color 155,123,422,50\n# Heading\n\n**bold text**\ntest\n:color 155,123,422,50\ntest", "<section style=\"color: rgba(155,123,422,50)\">\n<h1>Heading</h1>\n<p><strong>bold text</strong>\ntest</p>\n</section>\n<p>test</p>"],
         ];
     }
 
