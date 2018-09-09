@@ -13,8 +13,65 @@ I've composed a wiki page to describe features of this extension.
 
 ### Added Markdown features
 
-- [YouTube](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/YouTube)
-- [Text Alignment](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Text-Alignment)
+#### SoundCloud
+
+```bash
+:soundcloud https://soundcloud.com/djtechnoboy/tnt-sound-rush-right-now
+```
+
+[More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/SoundCloud)
+
+#### YouTube
+
+```bash
+:youtube https://www.youtube.com/watch?v=pwmY1XUTBpE
+```
+
+[More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/YouTube)
+
+#### Color
+
+```bash
+# Worded colors
+:color red
+Hello I should be in red text :D
+:color
+
+# 3 Character hex
+:color #AAA
+Hello I should be in red text :D
+:color
+
+# 6 Character hex
+:color #DADADA
+Hello I should be in red text :D
+:color
+
+# RGBA
+:color 255,255,255,50
+Hello I should be in red text :D
+:color
+```
+
+[More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Color)
+
+#### Text Alignment
+
+```bash
+:text-center
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
+:text-center
+
+:text-right
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
+:text-right
+
+:text-left
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna maximus sem congue, viverra ultrices purus porta. Aenean at porta mi. Donec ut felis consectetur, rutrum mauris non, sagittis ipsum. Quisque sit amet fringilla lorem. Curabitur euismod imperdiet nunc, et vehicula lorem scelerisque et. Fusce rutrum id lectus in pellentesque. Donec vel cursus dolor. Ut placerat justo nunc, a imperdiet libero posuere non. Nullam dolor ligula, efficitur a accumsan non, viverra quis lorem. Mauris at auctor ligula.
+:text-left
+```
+
+[More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Text-Alignment)
 
 ## Getting started
 
