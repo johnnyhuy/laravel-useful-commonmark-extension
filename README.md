@@ -99,7 +99,7 @@ Follow these steps to get this CommonMark extension working in your Laravel proj
 Run the following command at your root Laravel project directory (where `package.json` exists).
 
 ```bash
-$ composer require johnnyhuy/laravel-commonmark-useful-extensions
+$ composer require johnnyhuy/laravel-useful-commonmark-extension
 ```
 
 #### Adding the Markdown extension to a config
