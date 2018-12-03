@@ -2,15 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
-use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
-use JohnnyHuy\Laravel\Inline\Element\YouTube;
-use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Configuration;
+use League\CommonMark\ElementRendererInterface;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\Util\ConfigurationAwareInterface;
 
 class SoundCloudRenderer implements InlineRendererInterface
 {

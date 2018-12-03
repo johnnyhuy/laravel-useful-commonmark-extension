@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
+use League\CommonMark\InlineParserContext;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
-use League\CommonMark\InlineParserContext;
 
 class YouTubeParser extends AbstractInlineParser
 {
