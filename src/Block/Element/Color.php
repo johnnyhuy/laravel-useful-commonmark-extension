@@ -2,11 +2,11 @@
 
 namespace JohnnyHuy\Laravel\Block\Element;
 
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\InlineContainerInterface;
-use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use League\CommonMark\Util\RegexHelper;
+use League\CommonMark\ContextInterface;
+use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Block\Element\InlineContainerInterface;
 
 class Color extends AbstractBlock implements InlineContainerInterface {
     /**

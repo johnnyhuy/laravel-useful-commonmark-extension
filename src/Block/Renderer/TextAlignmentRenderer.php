@@ -2,13 +2,13 @@
 
 namespace JohnnyHuy\Laravel\Block\Renderer;
 
+use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Configuration;
+use League\CommonMark\ElementRendererInterface;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Util\Configuration;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 
 class TextAlignmentRenderer implements BlockRendererInterface
 {

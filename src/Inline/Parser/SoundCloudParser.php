@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
-use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
-use JohnnyHuy\Laravel\Inline\Element\YouTube;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
 use League\CommonMark\InlineParserContext;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
+use League\CommonMark\Inline\Parser\AbstractInlineParser;
 
 class SoundCloudParser extends AbstractInlineParser
 {

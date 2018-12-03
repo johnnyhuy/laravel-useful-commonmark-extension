@@ -2,14 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
+use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Configuration;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\Util\ConfigurationAwareInterface;
 
 class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {

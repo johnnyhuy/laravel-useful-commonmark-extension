@@ -6,17 +6,23 @@ namespace JohnnyHuy\Laravel;
 
 use Illuminate\Container\Container;
 use JohnnyHuy\Laravel\Block\Element\Color;
-use JohnnyHuy\Laravel\Block\Element\TextAlignment;
 use JohnnyHuy\Laravel\Block\Parser\ColorParser;
-use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
 use JohnnyHuy\Laravel\Block\Renderer\ColorRenderer;
+use JohnnyHuy\Laravel\Block\Element\TextAlignment;
+use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
 use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
-use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
-use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
-use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
 use JohnnyHuy\Laravel\Inline\Renderer\YouTubeRenderer;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
+use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
+use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
+use JohnnyHuy\Laravel\Inline\Element\Gist;
+use JohnnyHuy\Laravel\Inline\Parser\GistParser;
+use JohnnyHuy\Laravel\Inline\Renderer\GistRenderer;
+use JohnnyHuy\Laravel\Inline\Element\Codepen;
+use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
+use JohnnyHuy\Laravel\Inline\Renderer\CodepenRenderer;
 use League\CommonMark\Extension\Extension;
 
 /**
@@ -54,11 +60,15 @@ class UsefulCommonMarkExtension extends Extension
     public function __construct(Container $container)
     {
         $this->inlineParsers = [
+            $container->make(GistParser::class),
+            $container->make(CodepenParser::class),
             $container->make(YouTubeParser::class),
             $container->make(SoundCloudParser::class),
         ];
 
         $this->inlineRenderers = [
+            Gist::class => $container->make(GistRenderer::class),
+            Codepen::class => $container->make(CodepenRenderer::class),
             YouTube::class => $container->make(YouTubeRenderer::class),
             SoundCloud::class => $container->make(SoundCloudRenderer::class),
         ];

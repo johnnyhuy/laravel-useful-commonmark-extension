@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
+use JohnnyHuy\Laravel\Inline\Element\Gist;
 use League\CommonMark\InlineParserContext;
-use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 
-class YouTubeParser extends AbstractInlineParser
+class GistParser extends AbstractInlineParser
 {
     /**
      * @param InlineParserContext $inlineContext
@@ -21,7 +21,7 @@ class YouTubeParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        $regex = '/^(?:youtube)\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&#\s\?]+)(?:\?.[^\s]+)?/';
+        $regex = '/^(?:gist)\s(https:\/\/gist.github.com\/([^\/]+\/)?([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)?)/';
         $validate = $cursor->match($regex);
 
         if (!$validate) {
@@ -32,9 +32,8 @@ class YouTubeParser extends AbstractInlineParser
 
         $matches = [];
         preg_match($regex, $validate, $matches);
-        $videoId = $matches[1];
 
-        $inlineContext->getContainer()->appendChild(new YouTube("https://www.youtube.com/embed/$videoId"));
+        $inlineContext->getContainer()->appendChild(new Gist($matches[1]));
 
         return true;
     }
