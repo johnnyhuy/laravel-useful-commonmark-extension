@@ -9,6 +9,8 @@ use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use JohnnyHuy\Laravel\Block\Parser\ColorParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use JohnnyHuy\Laravel\Inline\Parser\GistParser;
+use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use League\CommonMark\Environment;
 
@@ -25,6 +27,8 @@ class ServiceProviderTest extends BaseTestCase
     public function testMarkdownParserIsInjectable()
     {
         $this->assertIsInjectable(YouTubeParser::class);
+        $this->assertIsInjectable(GistParser::class);
+        $this->assertIsInjectable(CodepenParser::class);
     }
 
     public function testMarkdownExtensionIsInjectable()
@@ -43,6 +47,8 @@ class ServiceProviderTest extends BaseTestCase
         $environment = $this->app->get(Environment::class);
 
         $this->assertTrue(in_array(resolve(YouTubeParser::class), $environment->getInlineParsers(), true));
+        $this->assertTrue(in_array(resolve(GistParser::class), $environment->getInlineParsers(), true));
+        $this->assertTrue(in_array(resolve(CodepenParser::class), $environment->getInlineParsers(), true));
         $this->assertTrue(in_array(resolve(ColorParser::class), $environment->getBlockParsers(), true));
     }
 }
