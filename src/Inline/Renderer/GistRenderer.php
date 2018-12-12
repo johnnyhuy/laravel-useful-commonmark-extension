@@ -30,10 +30,13 @@ class GistRenderer implements InlineRendererInterface
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
+        //generates the same script element, which you can see
+        //in the "embed gist" input field
         $script = new HtmlElement('script', [
             'src' => $inline->getUrl().'.js'
         ]);
 
+        //add a div wrapper around the script element
         return new HtmlElement('div', ['class' => 'gist-container'], $script);
     }
 

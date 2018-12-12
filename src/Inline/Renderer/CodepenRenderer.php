@@ -36,12 +36,16 @@ class CodepenRenderer implements InlineRendererInterface
         
         $apiResponse = $this->getContent($apiUrl);
 
+        //seems that the used codepen url is invalid
+        //or codepen is currently not available
         if (is_null($apiResponse)) {
             throw new \ErrorException('Codepen request returned null: ' . $apiUrl);
         }
 
+        //parse the oembed response
         $embed = json_decode($apiResponse);
 
+        //return the oembed html snippet with a div as wrapper element
         return new HtmlElement('div', ['class' => 'codepen-container'], $embed->html);
     }
 

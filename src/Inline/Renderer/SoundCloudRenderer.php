@@ -35,12 +35,16 @@ class SoundCloudRenderer implements InlineRendererInterface
         $url = "https://soundcloud.com/oembed?&format=json&url={$inline->getUrl()}&maxheight=166";
         $soundCloud = $this->getContent($url);
 
+        //seems that the used soundcloud url is invalid
+        //or soundcloud is currently not available
         if (is_null($soundCloud)) {
             throw new \ErrorException('SoundCloud request returned null: ' . $url);
         }
 
+        //parse the oembed response
         $soundCloud = json_decode($soundCloud);
 
+        //use the oembed html snippet as response 
         return $soundCloud->html;
     }
 
