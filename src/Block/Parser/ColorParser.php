@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Block\Parser;
 
-use JohnnyHuy\Laravel\Block\Element\Color;
-use JohnnyHuy\Laravel\Block\Element\TextAlignment;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
-use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
+use League\CommonMark\ContextInterface;
+use JohnnyHuy\Laravel\Block\Element\Color;
+use League\CommonMark\Block\Parser\AbstractBlockParser;
 
 /**
  * Text alignment parser class.

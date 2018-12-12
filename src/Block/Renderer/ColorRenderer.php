@@ -2,14 +2,13 @@
 
 namespace JohnnyHuy\Laravel\Block\Renderer;
 
-use JohnnyHuy\Laravel\Block\Element\Color;
-use JohnnyHuy\Laravel\Block\Element\TextAlignment;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
-use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Util\Configuration;
+use JohnnyHuy\Laravel\Block\Element\Color;
+use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 
 class ColorRenderer implements BlockRendererInterface
 {
