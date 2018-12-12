@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
+use JohnnyHuy\Laravel\Inline\Element\Gist;
 use League\CommonMark\InlineParserContext;
-use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 
-class YouTubeParser extends AbstractInlineParser
+class GistParser extends AbstractInlineParser
 {
     /**
      * @param InlineParserContext $inlineContext
@@ -21,9 +21,9 @@ class YouTubeParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        //regex to ensure that we got a valid youtube url
-        //and the required `youtube:` prefix exists
-        $regex = '/^(?:youtube)\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&#\s\?]+)(?:\?.[^\s]+)?/';
+        //check that the given user input is a valid gist url
+        //and the required `gist:` prefix exists
+        $regex = '/^(?:gist)\s(https:\/\/gist.github.com\/([^\/]+\/)?([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)?)/';
         $validate = $cursor->match($regex);
 
         //the computer says no
@@ -35,10 +35,9 @@ class YouTubeParser extends AbstractInlineParser
 
         $matches = [];
         preg_match($regex, $validate, $matches);
-        $videoId = $matches[1];
 
-        //generates a valid youtube embed url with the parsed video id from the given url
-        $inlineContext->getContainer()->appendChild(new YouTube("https://www.youtube.com/embed/$videoId"));
+        //return the given gist url to the renderer class
+        $inlineContext->getContainer()->appendChild(new Gist($matches[1]));
 
         return true;
     }

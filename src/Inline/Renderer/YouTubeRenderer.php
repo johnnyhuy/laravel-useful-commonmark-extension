@@ -2,14 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
+use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Configuration;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
+use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\Util\ConfigurationAwareInterface;
 
 class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
@@ -30,6 +30,7 @@ class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInte
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
+        //create a new iframe with the given youtube url
         $iframe = new HtmlElement('iframe', [
             'width' => 640,
             'height' => 390,
@@ -38,6 +39,7 @@ class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInte
             'frameborder' => 0,
         ]);
 
+        //return the iframe with a span as wrapper element
         return new HtmlElement('span', ['class' => 'youtube-video'], $iframe);
     }
 
