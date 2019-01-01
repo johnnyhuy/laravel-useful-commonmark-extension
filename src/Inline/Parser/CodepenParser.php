@@ -21,12 +21,12 @@ class CodepenParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        //check that the given user input is a valid codepen url
-        //and the required `codepen:` prefix exists
+        // Check that the given user input is a valid Codepen url
+        // and the required `codepen:` prefix exists
         $regex = '/^(?:codepen)\s(https:\/\/codepen\.io\/([^\/]+\/)?([a-zA-Z0-9]+)\/pen\/([a-zA-Z0-9]+)?)/';
         $validate = $cursor->match($regex);
 
-        //the computer says no
+        // The computer says no
         if (!$validate) {
             $cursor->restoreState($savedState);
 
@@ -35,8 +35,8 @@ class CodepenParser extends AbstractInlineParser
 
         $matches = [];
         preg_match($regex, $validate, $matches);
-        
-        //return the given codepen url to the renderer class
+
+        // Return the given codepen url to the renderer class
         $inlineContext->getContainer()->appendChild(new Codepen($matches[1]));
 
         return true;
