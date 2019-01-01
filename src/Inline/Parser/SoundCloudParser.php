@@ -21,12 +21,12 @@ class SoundCloudParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        //check that the given user input is a valid soundcloud url
-        //and the required `soundcloud:` or `:sc` prefix exists
+        // Check that the given user input is a valid soundcloud url
+        // and the required `soundcloud:` or `:sc` prefix exists
         $regex = '/^(?:soundcloud|sc)\s((?:https?\:\/\/)?(?:www\.)?(?:soundcloud\.com\/)[^&#\s\?]+\/[^&#\s\?]+)/';
         $validate = $cursor->match($regex);
 
-        //the computer says no
+        // The computer says no
         if (!$validate) {
             $cursor->restoreState($savedState);
 

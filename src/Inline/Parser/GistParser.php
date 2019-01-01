@@ -21,12 +21,12 @@ class GistParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        //check that the given user input is a valid gist url
-        //and the required `gist:` prefix exists
+        // Check that the given user input is a valid gist url
+        // and the required `gist:` prefix exists
         $regex = '/^(?:gist)\s(https:\/\/gist.github.com\/([^\/]+\/)?([a-zA-Z0-9]+)\/([a-zA-Z0-9]+)?)/';
         $validate = $cursor->match($regex);
 
-        //the computer says no
+        // The computer says no
         if (!$validate) {
             $cursor->restoreState($savedState);
 
@@ -36,7 +36,7 @@ class GistParser extends AbstractInlineParser
         $matches = [];
         preg_match($regex, $validate, $matches);
 
-        //return the given gist url to the renderer class
+        // Return the given gist url to the renderer class
         $inlineContext->getContainer()->appendChild(new Gist($matches[1]));
 
         return true;
