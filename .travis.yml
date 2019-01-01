@@ -1,11 +1,8 @@
-deploy:
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: true
 language: php
 php:
   - 7.2
 before_script:
-  - composer install
+  - composer self-update
+  - composer install --no-interaction
 script:
   - vendor/bin/phpunit tests/
