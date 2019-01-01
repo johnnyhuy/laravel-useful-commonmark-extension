@@ -7,11 +7,95 @@
 
 A Laravel PHP Composer packaged of useful CommonMark extensions for The PHP Leagues [CommonMark implementation](https://github.com/thephpleague/commonmark).
 
+- [Laravel Useful CommonMark Extension](#laravel-useful-commonmark-extension)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+      - [Installing the Composer package](#installing-the-composer-package)
+      - [Adding the Markdown extension to a config](#adding-the-markdown-extension-to-a-config)
+      - [(Optional) Adding the service provider to app config](#optional-adding-the-service-provider-to-app-config)
+  - [Running the tests](#running-the-tests)
+  - [Wiki](#wiki)
+    - [Markdown features](#markdown-features)
+      - [Gist](#gist)
+      - [Codepen](#codepen)
+      - [SoundCloud](#soundcloud)
+      - [YouTube](#youtube)
+      - [Color](#color)
+      - [Text Alignment](#text-alignment)
+  - [Contribution](#contribution)
+  - [License](#license)
+
+## Getting started
+
+Instructions to install this extension to your Laravel project.
+
+### Prerequisites
+
+- PHP >= 7.1
+- Laravel >= 5.5
+
+### Installation
+
+Follow these steps to get this CommonMark extension working in your Laravel project!
+
+#### Installing the Composer package
+
+Run the following command at your root Laravel project directory (where `package.json` exists).
+
+```bash
+$ composer require johnnyhuy/laravel-useful-commonmark-extension
+```
+
+#### Adding the Markdown extension to a config
+
+Add `JohnnyHuy\Laravel\UsefulCommonMarkExtension::class` in `config/markdown.php` in the `extensions` array. Here's an example:
+
+```php
+'extensions' => [
+    ...
+    JohnnyHuy\Laravel\UsefulCommonMarkExtension::class
+    ...
+],
+```
+
+#### (Optional) Adding the service provider to app config
+
+If automatic package discovery is not enabled in your project, add the following line to register the service provider in your `config/app.php`. Here's an example:
+
+```php
+'providers' => [
+    ...
+    JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider::class,
+    ...
+],
+```
+
+## Running the tests
+
+Clone this repository and run `composer install` to install all relevant Composer packages. Change the root extension directory and run the following command to execute PHPUnit test cases.
+
+```bash
+$ vendor/bin/phpunit tests/
+```
+
 ## Wiki
 
 I've composed a wiki page to describe features of this extension.
 
-### Added Markdown features
+### Markdown features
+
+#### Gist
+
+```markdown
+:gist https://gist.github.com/noxify/2b02fd0fb0ea18a4d9d764e31fe9af8e
+```
+
+#### Codepen
+
+```markdown
+:codepen https://codepen.io/YusukeNakaya/pen/XyOaBj
+```
 
 #### SoundCloud
 
@@ -80,59 +164,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna m
 ```
 
 [More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Text-Alignment)
-
-## Getting started
-
-Instructions to install this extension to your Laravel project.
-
-### Prerequisites
-
-- PHP >= 7.1
-- Laravel >= 5.5
-
-### Installation
-
-Follow these steps to get this CommonMark extension working in your Laravel project!
-
-#### Installing the Composer package
-
-Run the following command at your root Laravel project directory (where `package.json` exists).
-
-```bash
-$ composer require johnnyhuy/laravel-useful-commonmark-extension
-```
-
-#### Adding the Markdown extension to a config
-
-Add `JohnnyHuy\Laravel\UsefulCommonMarkExtension::class` in `config/markdown.php` in the `extensions` array. Here's an example:
-
-```php
-'extensions' => [
-    ...
-    JohnnyHuy\Laravel\UsefulCommonMarkExtension::class
-    ...
-],
-```
-
-#### (Optional) Adding the service provider to app config
-
-If automatic package discovery is not enabled in your project, add the following line to register the service provider in your `config/app.php`. Here's an example:
-
-```php
-'providers' => [
-    ...
-    JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider::class,
-    ...
-],
-```
-
-## Running the tests
-
-Clone this repository and run `composer install` to install all relevant Composer packages. Change the root extension directory and run the following command to execute PHPUnit test cases.
-
-```bash
-$ vendor/bin/phpunit tests/
-```
 
 ## Contribution
 
