@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JohnnyHuy\Laravel\Markdown\Tests\Elements;
+namespace JohnnyHuy\Laravel\Markdown\Tests\Elements\Block;
 
 use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * CommonMak markdown extension test
@@ -41,6 +43,8 @@ class TextAlignmentTest extends BaseTestCase
      * @dataProvider successfulStrings
      * @param $input
      * @param $output
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     public function testShouldRender($input, $output)
     {
@@ -51,6 +55,8 @@ class TextAlignmentTest extends BaseTestCase
      * @dataProvider failedStrings
      * @param $input
      * @param $output
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     public function testShouldNotRender($input, $output)
     {

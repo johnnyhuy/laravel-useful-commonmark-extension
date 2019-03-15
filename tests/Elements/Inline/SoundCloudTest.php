@@ -7,6 +7,8 @@ namespace JohnnyHuy\Laravel\Markdown\Tests\Elements;
 use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
 use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use Mockery;
+use PHPUnit\Framework\ExpectationFailedException;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * CommonMak markdown extension test
@@ -49,6 +51,8 @@ class SoundCloudTest extends BaseTestCase
      * @dataProvider successfulStrings
      * @param $input
      * @param $output
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     public function testShouldRender($input, $output)
     {
