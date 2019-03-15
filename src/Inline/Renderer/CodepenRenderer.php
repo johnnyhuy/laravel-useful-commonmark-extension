@@ -2,14 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Util\Configuration;
+use ErrorException;
 use JohnnyHuy\Laravel\Inline\Element\Codepen;
 use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Util\Configuration;
 
 class CodepenRenderer implements InlineRendererInterface
 {
@@ -20,10 +20,10 @@ class CodepenRenderer implements InlineRendererInterface
 
     /**
      * @param AbstractInline|AbstractWebResource $inline
-     * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
+     * @param ElementRendererInterface $htmlRenderer
      *
-     * @return \League\CommonMark\HtmlElement|string
-     * @throws \ErrorException
+     * @return HtmlElement|string
+     * @throws ErrorException
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -39,7 +39,7 @@ class CodepenRenderer implements InlineRendererInterface
         //seems that the used codepen url is invalid
         //or codepen is currently not available
         if (is_null($apiResponse)) {
-            throw new \ErrorException('Codepen request returned null: ' . $apiUrl);
+            throw new ErrorException('Codepen request returned null: ' . $apiUrl);
         }
 
         //parse the oembed response

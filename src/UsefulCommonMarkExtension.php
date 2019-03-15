@@ -23,7 +23,11 @@ use JohnnyHuy\Laravel\Inline\Renderer\GistRenderer;
 use JohnnyHuy\Laravel\Inline\Element\Codepen;
 use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
 use JohnnyHuy\Laravel\Inline\Renderer\CodepenRenderer;
+use League\CommonMark\Block\Parser\BlockParserInterface;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\Extension\Extension;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
+use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
 /**
  * This is the useful CommonMark extension class.
@@ -64,6 +68,7 @@ class UsefulCommonMarkExtension extends Extension
             $container->make(CodepenParser::class),
             $container->make(YouTubeParser::class),
             $container->make(SoundCloudParser::class),
+            $container->make(Inline\Parser\ColorParser::class),
         ];
 
         $this->inlineRenderers = [
@@ -71,21 +76,22 @@ class UsefulCommonMarkExtension extends Extension
             Codepen::class => $container->make(CodepenRenderer::class),
             YouTube::class => $container->make(YouTubeRenderer::class),
             SoundCloud::class => $container->make(SoundCloudRenderer::class),
+            Inline\Element\Color::class => $container->make(Inline\Renderer\ColorRenderer::class)
         ];
 
         $this->blockParsers = [
             $container->make(TextAlignmentParser::class),
-            $container->make(ColorParser::class),
+            $container->make(Block\Parser\ColorParser::class),
         ];
 
         $this->blockRenderers = [
             TextAlignment::class => $container->make(TextAlignmentRenderer::class),
-            Color::class => $container->make(ColorRenderer::class),
+            Block\Element\Color::class => $container->make(Block\Renderer\ColorRenderer::class),
         ];
     }
 
     /**
-     * @return array|\League\CommonMark\Inline\Renderer\InlineRendererInterface[]
+     * @return array|InlineRendererInterface[]
      */
     public function getInlineRenderers()
     {
@@ -93,7 +99,7 @@ class UsefulCommonMarkExtension extends Extension
     }
 
     /**
-     * @return \League\CommonMark\Block\Renderer\BlockRendererInterface[]
+     * @return BlockRendererInterface[]
      */
     public function getBlockRenderers()
     {
@@ -101,7 +107,7 @@ class UsefulCommonMarkExtension extends Extension
     }
 
     /**
-     * @return \League\CommonMark\Inline\Parser\InlineParserInterface[]
+     * @return InlineParserInterface[]
      */
     public function getInlineParsers()
     {
@@ -109,7 +115,7 @@ class UsefulCommonMarkExtension extends Extension
     }
 
     /**
-     * @return array|\League\CommonMark\Block\Parser\BlockParserInterface[]
+     * @return array|BlockParserInterface[]
      */
     public function getBlockParsers()
     {

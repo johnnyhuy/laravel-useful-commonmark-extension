@@ -37,10 +37,11 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
     protected function registerParser()
     {
         $this->app->singleton(GistParser::class, function () { return new GistParser(); });
-        $this->app->singleton(ColorParser::class, function () { return new ColorParser(); });
         $this->app->singleton(CodepenParser::class, function () { return new CodepenParser(); });
         $this->app->singleton(YouTubeParser::class, function () { return new YouTubeParser(); });
         $this->app->singleton(SoundCloudParser::class, function () { return new SoundCloudParser(); });
+        $this->app->singleton(Block\Parser\ColorParser::class, function () { return new Block\Parser\ColorParser(); });
+        $this->app->singleton(Inline\Parser\ColorParser::class, function () { return new Inline\Parser\ColorParser(); });
     }
 
     /**

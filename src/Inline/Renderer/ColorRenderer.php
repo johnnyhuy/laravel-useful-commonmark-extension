@@ -2,6 +2,8 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
+use InvalidArgumentException;
+use JohnnyHuy\Laravel\Inline\Element\Color;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
@@ -11,7 +13,7 @@ use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
 
-class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class ColorRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
     /**
      * @var Configuration
@@ -26,21 +28,11 @@ class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInte
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
-        if (!($inline instanceof YouTube)) {
-            throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
+        if (!($inline instanceof Color)) {
+            throw new InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
-        // Create a new iframe with the given youtube url
-        $iframe = new HtmlElement('iframe', [
-            'width' => 640,
-            'height' => 390,
-            'src' => $inline->getUrl(),
-            'type' => "text/html",
-            'frameborder' => 0,
-        ]);
-
-        // Return the iframe with a span as wrapper element
-        return new HtmlElement('span', ['class' => 'youtube-video'], $iframe);
+        return new HtmlElement('span', ['style' => "color: {$inline->getData('color')}"], $inline->getContent());
     }
 
     /**

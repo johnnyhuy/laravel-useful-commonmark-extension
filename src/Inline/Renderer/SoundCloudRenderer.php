@@ -2,14 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\ElementRendererInterface;
+use ErrorException;
 use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
+use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Util\ConfigurationAwareInterface;
 use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Util\Configuration;
 
 class SoundCloudRenderer implements InlineRendererInterface
 {
@@ -20,10 +20,10 @@ class SoundCloudRenderer implements InlineRendererInterface
 
     /**
      * @param AbstractInline|AbstractWebResource $inline
-     * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
+     * @param ElementRendererInterface $htmlRenderer
      *
-     * @return \League\CommonMark\HtmlElement|string
-     * @throws \ErrorException
+     * @return HtmlElement|string
+     * @throws ErrorException
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
@@ -35,16 +35,16 @@ class SoundCloudRenderer implements InlineRendererInterface
         $url = "https://soundcloud.com/oembed?&format=json&url={$inline->getUrl()}&maxheight=166";
         $soundCloud = $this->getContent($url);
 
-        //seems that the used soundcloud url is invalid
-        //or soundcloud is currently not available
-        if (is_null($soundCloud)) {
-            throw new \ErrorException('SoundCloud request returned null: ' . $url);
+        // Seems that the used SoundCloud url is invalid
+        // or SoundCloud is currently not available
+        if ($soundCloud === null) {
+            throw new ErrorException('SoundCloud request returned null: ' . $url);
         }
 
-        //parse the oembed response
+        // Parse the embed response
         $soundCloud = json_decode($soundCloud);
 
-        //use the oembed html snippet as response 
+        // Use the embed html snippet as response
         return $soundCloud->html;
     }
 
