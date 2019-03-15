@@ -61,7 +61,7 @@ class SoundCloudTest extends BaseTestCase
             ->makePartial()
             ->shouldReceive( 'getContent' )
             ->once()
-            ->andReturn(file_get_contents(dirname(__FILE__) . "/../Fakes/SoundCloudTrack.json"));
+            ->andReturn(file_get_contents(__DIR__ . '/../../Fakes/SoundCloudTrack.json'));
         $this->app->instance(SoundCloudRenderer::class, $mock->getMock());
 
         $html = $this->app->markdown->convertToHtml($input);
@@ -72,6 +72,8 @@ class SoundCloudTest extends BaseTestCase
      * @dataProvider failedStrings
      * @param $input
      * @param $output
+     * @throws ExpectationFailedException
+     * @throws InvalidArgumentException
      */
     public function testShouldNotRender($input, $output)
     {
