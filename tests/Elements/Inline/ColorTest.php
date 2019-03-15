@@ -22,6 +22,8 @@ class ColorTest extends BaseTestCase
             [":color 155,123,422 red **Heading** :color\ntest", "<p><span style=\"color: rgb(155,123,422)\">red **Heading**</span>\ntest</p>"],
             [':color 155,123,422,50 red **Heading** :color', '<p><span style="color: rgba(155,123,422,50)">red **Heading**</span></p>'],
             ['testing :color 155,123,422,50 red **Heading** :color testing', '<p>testing <span style="color: rgba(155,123,422,50)">red **Heading**</span> testing</p>'],
+            ['testing :color #333 red **Heading** :color testing', '<p>testing <span style="color: #333">red <strong>Heading</strong></span> testing</p>'],
+            ['testing :color #aaaaaa red **Heading** :color testing', '<p>testing <span style="color: #aaaaaa">red <strong>Heading</strong></span> testing</p>'],
         ];
     }
 
