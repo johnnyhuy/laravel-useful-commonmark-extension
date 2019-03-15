@@ -3,6 +3,7 @@ php:
   - 7.2
 before_script:
   - composer self-update
+  - composer config --global github-protocols https
   - composer install --no-interaction
 script:
   - vendor/bin/phpunit tests/
