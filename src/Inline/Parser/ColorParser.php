@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
 use JohnnyHuy\Laravel\Inline\Element\Color;
-use League\CommonMark\InlineParserContext;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\InlineParserContext;
 
 class ColorParser extends AbstractInlineParser
 {
@@ -21,7 +21,7 @@ class ColorParser extends AbstractInlineParser
 
         $cursor->advance();
 
-        $regex = '/(?:color|colour)(?:\s(?:(\#?[A-z]+|\d{1,3}\,\s?\d{1,3}\,\s?\d{1,3}(\,\s?\d{1,3})?)))\s(.*(?!:color))\s(?:\:color)/';
+        $regex = '/(?:color|colour)(?:\s(?:(\#?[A-z0-9]+|\d{1,3}\,\s?\d{1,3}\,\s?\d{1,3}(\,\s?\d{1,3})?)))\s(.*(?!:color))\s(?:\:color)/';
         $validate = $cursor->match($regex);
 
         if (!$validate) {
@@ -39,8 +39,6 @@ class ColorParser extends AbstractInlineParser
             } else {
                 $color = "rgba({$color})";
             }
-        } else if (preg_match('/[\#]+/', $color, $_)) {
-            $color = "#{$color}";
         }
 
         $data['color'] = $color;
