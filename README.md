@@ -121,35 +121,35 @@ I've composed a wiki page to describe features of this extension.
 Hello I should be in red text :D
 :color
 
-:color red this is inline! :color
+:color-red this is inline! :color
 
 # 3 Character hex
 :color #AAA
 Hello!
 :color
 
-:color #AAA this is inline! :color
+:color-#AAA this is inline! :color
 
 # 6 Character hex
 :color #DADADA
 Hello!
 :color
 
-:color #DADADA this is inline! :color
+:color-#DADADA this is inline! :color
 
 # RGB
 :color 255,255,255
 Hello!
 :color
 
-:color 255,255,255 this is inline! :color
+:color-255,255,255 this is inline! :color
 
 # RGBA
 :color 255,255,255,50
 Hello!
 :color
 
-:color 255,255,255,50 this is inline! :color
+:color-255,255,255,50 this is inline! :color
 ```
 
 [More info](https://github.com/johnnyhuy/laravel-useful-commonmark-extension/wiki/Color)
