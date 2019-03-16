@@ -4,7 +4,6 @@ namespace JohnnyHuy\Laravel\Inline\Renderer;
 
 use InvalidArgumentException;
 use JohnnyHuy\Laravel\Inline\Element\Color;
-use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -32,7 +31,11 @@ class ColorRenderer implements InlineRendererInterface, ConfigurationAwareInterf
             throw new InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
-        return new HtmlElement('span', ['style' => "color: {$inline->getData('color')}"], $inline->getContent());
+        /** @var AbstractInline[] $children */
+        $children = $inline->children();
+        $innerElements = $htmlRenderer->renderInlines($children);
+
+        return new HtmlElement('span', ['style' => "color: {$inline->getData('color')}"], $innerElements);
     }
 
     /**
