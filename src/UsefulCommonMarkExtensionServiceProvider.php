@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace JohnnyHuy\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use JohnnyHuy\Laravel\Block\Parser\ColorParser;
-use JohnnyHuy\Laravel\Inline\Parser\GistParser;
 use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
-use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
+use JohnnyHuy\Laravel\Inline\Parser\GistParser;
 use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
-use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 
 /**
  * This is the CommonMark useful extension service provider class.
@@ -41,7 +39,8 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
         $this->app->singleton(YouTubeParser::class, function () { return new YouTubeParser(); });
         $this->app->singleton(SoundCloudParser::class, function () { return new SoundCloudParser(); });
         $this->app->singleton(Block\Parser\ColorParser::class, function () { return new Block\Parser\ColorParser(); });
-        $this->app->singleton(Inline\Parser\ColorParser::class, function () { return new Inline\Parser\ColorParser(); });
+        $this->app->singleton(Inline\Parser\OpenColorParser::class, function () { return new Inline\Parser\OpenColorParser(); });
+        $this->app->singleton(Inline\Parser\CloseColorParser::class, function () { return new Inline\Parser\CloseColorParser(); });
     }
 
     /**
