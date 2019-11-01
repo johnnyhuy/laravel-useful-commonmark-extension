@@ -20,23 +20,6 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->registerParser();
-    }
-
-    /**
-     * Register the parser class.
-     *
-     * @return void
-     */
-    protected function registerParser()
-    {
-//        $this->app->singleton(GistParser::class, function () { return new GistParser(); });
-//        $this->app->singleton(CodepenParser::class, function () { return new CodepenParser(); });
-//        $this->app->singleton(YouTubeParser::class, function () { return new YouTubeParser(); });
-//        $this->app->singleton(SoundCloudParser::class, function () { return new SoundCloudParser(); });
-//        $this->app->singleton(Block\Parser\ColorParser::class, function () { return new Block\Parser\ColorParser(); });
-//        $this->app->singleton(Inline\Parser\OpenColorParser::class, function () { return new Inline\Parser\OpenColorParser(); });
-//        $this->app->singleton(Inline\Parser\CloseColorParser::class, function () { return new Inline\Parser\CloseColorParser(); });
     }
 
     /**
@@ -46,8 +29,6 @@ class UsefulCommonMarkExtensionServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
-            //
-        ];
+        return [];
     }
 }
