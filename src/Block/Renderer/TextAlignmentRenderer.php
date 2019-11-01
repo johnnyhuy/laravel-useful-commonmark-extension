@@ -2,13 +2,12 @@
 
 namespace JohnnyHuy\Laravel\Block\Renderer;
 
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Util\Configuration;
-use League\CommonMark\ElementRendererInterface;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Block\Renderer\BlockRendererInterface;
+use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\HtmlElement;
+use League\CommonMark\Util\Configuration;
 
 class TextAlignmentRenderer implements BlockRendererInterface
 {
@@ -19,12 +18,11 @@ class TextAlignmentRenderer implements BlockRendererInterface
 
     /**
      * @param AbstractBlock $block
-     * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
-     *
+     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
-     * @return \League\CommonMark\HtmlElement|string
+     * @return HtmlElement|string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
     {
         if (!($block instanceof TextAlignment)) {
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($block));

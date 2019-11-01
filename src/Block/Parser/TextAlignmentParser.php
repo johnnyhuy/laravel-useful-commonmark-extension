@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Block\Parser;
 
-use League\CommonMark\Cursor;
-use League\CommonMark\ContextInterface;
 use JohnnyHuy\Laravel\Block\Element\TextAlignment;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Block\Parser\BlockParserInterface;
+use League\CommonMark\ContextInterface;
+use League\CommonMark\Cursor;
 
 /**
  * Text alignment parser class.
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class TextAlignmentParser extends AbstractBlockParser
+class TextAlignmentParser implements BlockParserInterface
 {
     /**
      * @param ContextInterface $context
      * @param Cursor $cursor
      * @return bool
      */
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
         if ($cursor->isIndented()) {
             return false;

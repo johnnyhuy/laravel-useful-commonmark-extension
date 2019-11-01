@@ -7,10 +7,11 @@ namespace JohnnyHuy\Laravel\Inline\Parser;
 use League\CommonMark\Delimiter\DelimiterStack;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\EnvironmentInterface;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
 
-class CloseColorParser extends AbstractInlineParser implements EnvironmentAwareInterface
+class CloseColorParser implements InlineParserInterface, EnvironmentAwareInterface
 {
     /**
      * @var Environment
@@ -21,7 +22,7 @@ class CloseColorParser extends AbstractInlineParser implements EnvironmentAwareI
      * @param InlineParserContext $inlineContext
      * @return bool
      */
-    public function parse(InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext): bool
     {
         $opener = $inlineContext->getDelimiterStack()->searchByCharacter([':']);
         if ($opener === null) {
@@ -51,9 +52,9 @@ class CloseColorParser extends AbstractInlineParser implements EnvironmentAwareI
 
         $delimiterStack = $inlineContext->getDelimiterStack();
         $stackBottom = $opener->getPrevious();
-        foreach ($this->environment->getInlineProcessors() as $inlineProcessor) {
-            $inlineProcessor->processInlines($delimiterStack, $stackBottom);
-        }
+//        foreach ($this->environment->getInlineProcessors() as $inlineProcessor) {
+//            $inlineProcessor->processInlines($delimiterStack, $stackBottom);
+//        }
 
         if ($delimiterStack instanceof DelimiterStack) {
             $delimiterStack->removeAll($stackBottom);
@@ -65,17 +66,17 @@ class CloseColorParser extends AbstractInlineParser implements EnvironmentAwareI
     /**
      * @return string[]
      */
-    public function getCharacters()
+    public function getCharacters(): array
     {
         return [':'];
     }
 
     /**
-     * @param Environment $environment
+     * @param EnvironmentInterface $environment
      *
      * @return void
      */
-    public function setEnvironment(Environment $environment)
+    public function setEnvironment(EnvironmentInterface $environment)
     {
         $this->environment = $environment;
     }

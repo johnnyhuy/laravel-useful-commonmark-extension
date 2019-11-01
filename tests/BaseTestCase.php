@@ -6,6 +6,7 @@ namespace JohnnyHuy\Laravel\Markdown\Tests;
 
 use GrahamCampbell\Markdown\MarkdownServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
+use Illuminate\Contracts\Foundation\Application;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider;
 
@@ -14,7 +15,7 @@ class BaseTestCase extends AbstractPackageTestCase
     /**
      * Setup the application environment.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param Application $app
      *
      * @return void
      */
@@ -27,7 +28,7 @@ class BaseTestCase extends AbstractPackageTestCase
     /**
      * Get the required service providers.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
+     * @param Application $app
      *
      * @return string[]
      */

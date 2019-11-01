@@ -2,15 +2,14 @@
 
 namespace JohnnyHuy\Laravel\Block\Renderer;
 
+use JohnnyHuy\Laravel\Block\Element\BlockColor;
+use League\CommonMark\Block\Element\AbstractBlock;
+use League\CommonMark\Block\Renderer\BlockRendererInterface;
+use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Util\Configuration;
-use JohnnyHuy\Laravel\Block\Element\Color;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Block\Renderer\BlockRendererInterface;
 
-class ColorRenderer implements BlockRendererInterface
+class ColorBlockRenderer implements BlockRendererInterface
 {
     /**
      * @var Configuration
@@ -19,14 +18,13 @@ class ColorRenderer implements BlockRendererInterface
 
     /**
      * @param AbstractBlock $block
-     * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
-     *
+     * @param ElementRendererInterface $htmlRenderer
      * @param bool $inTightList
-     * @return \League\CommonMark\HtmlElement|string
+     * @return HtmlElement|string
      */
-    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, $inTightList = false)
+    public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
     {
-        if (!($block instanceof Color)) {
+        if (!($block instanceof BlockColor)) {
             throw new \InvalidArgumentException('Incompatible inline type: ' . get_class($block));
         }
 

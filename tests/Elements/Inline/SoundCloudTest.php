@@ -17,6 +17,12 @@ use SebastianBergmann\RecursionContext\InvalidArgumentException;
  */
 class SoundCloudTest extends BaseTestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
+    }
+
     public function successfulStrings()
     {
         $expected = '<p><iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?visual=true&url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F489177243&show_artwork=true&maxheight=166"></iframe></p>';
@@ -59,7 +65,8 @@ class SoundCloudTest extends BaseTestCase
         // Mock the SoundCloud renderer so we don't have to do HTTP calls
         $mock = Mockery::mock(SoundCloudRenderer::class)
             ->makePartial()
-            ->shouldReceive( 'getContent' )
+            ->shouldReceive('getContent')
+            ->withAnyArgs()
             ->once()
             ->andReturn(file_get_contents(__DIR__ . '/../../Fakes/SoundCloudTrack.json'));
         $this->app->instance(SoundCloudRenderer::class, $mock->getMock());

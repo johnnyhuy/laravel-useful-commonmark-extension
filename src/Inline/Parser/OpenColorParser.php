@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
-use JohnnyHuy\Laravel\Inline\Element\Color;
+use JohnnyHuy\Laravel\Inline\Element\InlineColor;
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Environment;
 use League\CommonMark\EnvironmentAwareInterface;
+use League\CommonMark\EnvironmentInterface;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
 
-class OpenColorParser extends AbstractInlineParser implements EnvironmentAwareInterface
+class OpenColorParser implements InlineParserInterface, EnvironmentAwareInterface
 {
     /**
      * @var Environment
@@ -22,7 +24,7 @@ class OpenColorParser extends AbstractInlineParser implements EnvironmentAwareIn
      * @param InlineParserContext $inlineContext
      * @return bool
      */
-    public function parse(InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext): bool
     {
         $character = $inlineContext->getCursor()->getCharacter();
         if ($character !== ':') {
@@ -50,7 +52,7 @@ class OpenColorParser extends AbstractInlineParser implements EnvironmentAwareIn
             $color = "rgb({$color})";
         }
 
-        $inline = new Color($cursor->getPreviousText(), [
+        $inline = new InlineColor($cursor->getPreviousText(), [
             'delim' => true,
             'color' => $color,
         ]);
@@ -65,17 +67,17 @@ class OpenColorParser extends AbstractInlineParser implements EnvironmentAwareIn
     /**
      * @return string[]
      */
-    public function getCharacters()
+    public function getCharacters(): array
     {
         return [':'];
     }
 
     /**
-     * @param Environment $environment
+     * @param EnvironmentInterface $environment
      *
      * @return void
      */
-    public function setEnvironment(Environment $environment)
+    public function setEnvironment(EnvironmentInterface $environment)
     {
         $this->environment = $environment;
     }

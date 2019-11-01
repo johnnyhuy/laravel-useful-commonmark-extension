@@ -5,16 +5,16 @@ declare(strict_types = 1);
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
 use JohnnyHuy\Laravel\Inline\Element\Gist;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
 use League\CommonMark\InlineParserContext;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
 
-class GistParser extends AbstractInlineParser
+class GistParser implements InlineParserInterface
 {
     /**
      * @param InlineParserContext $inlineContext
      * @return bool
      */
-    public function parse(InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
         $savedState = $cursor->saveState();
@@ -45,7 +45,7 @@ class GistParser extends AbstractInlineParser
     /**
      * @return string[]
      */
-    public function getCharacters()
+    public function getCharacters(): array
     {
         return [':'];
     }
