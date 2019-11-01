@@ -2,9 +2,10 @@
 
 namespace JohnnyHuy\Laravel\Inline\Element;
 
-use League\CommonMark\Inline\Element\AbstractInlineContainer;
+use League\CommonMark\Inline\Element\AbstractStringContainer;
 
-class Color extends AbstractInlineContainer {
+class InlineColor extends AbstractStringContainer
+{
     protected $content;
 
     /**
@@ -13,6 +14,7 @@ class Color extends AbstractInlineContainer {
      */
     public function __construct(string $contents = '', array $data = [])
     {
+        parent::__construct($contents, $data);
         $this->content = $contents;
         $this->data = $data;
     }

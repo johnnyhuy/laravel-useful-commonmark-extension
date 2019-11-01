@@ -10,6 +10,7 @@ use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
+use League\CommonMark\Util\ConfigurationInterface;
 
 class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
@@ -44,9 +45,9 @@ class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInte
     }
 
     /**
-     * @param Configuration $configuration
+     * @param ConfigurationInterface $configuration
      */
-    public function setConfiguration(Configuration $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->config = $configuration;
     }

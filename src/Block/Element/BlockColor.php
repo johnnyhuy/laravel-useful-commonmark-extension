@@ -2,13 +2,12 @@
 
 namespace JohnnyHuy\Laravel\Block\Element;
 
-use League\CommonMark\Cursor;
-use League\CommonMark\Util\RegexHelper;
-use League\CommonMark\ContextInterface;
 use League\CommonMark\Block\Element\AbstractBlock;
-use League\CommonMark\Block\Element\InlineContainerInterface;
+use League\CommonMark\ContextInterface;
+use League\CommonMark\Cursor;
 
-class Color extends AbstractBlock implements InlineContainerInterface {
+class BlockColor extends AbstractBlock
+{
     /**
      * Returns true if this block can contain the given block as a child node
      *
@@ -16,19 +15,9 @@ class Color extends AbstractBlock implements InlineContainerInterface {
      *
      * @return bool
      */
-    public function canContain(AbstractBlock $block)
+    public function canContain(AbstractBlock $block): bool
     {
         return true;
-    }
-
-    /**
-     * Returns true if block type can accept lines of text
-     *
-     * @return bool
-     */
-    public function acceptsLines()
-    {
-        return false;
     }
 
     /**
@@ -36,7 +25,7 @@ class Color extends AbstractBlock implements InlineContainerInterface {
      *
      * @return bool
      */
-    public function isCode()
+    public function isCode(): bool
     {
         return false;
     }
@@ -47,7 +36,7 @@ class Color extends AbstractBlock implements InlineContainerInterface {
      * @param Cursor $cursor
      * @return bool
      */
-    public function matchesNextLine(Cursor $cursor)
+    public function matchesNextLine(Cursor $cursor): bool
     {
         return true;
     }
@@ -67,7 +56,7 @@ class Color extends AbstractBlock implements InlineContainerInterface {
      *
      * @return bool
      */
-    public function shouldLastLineBeBlank(Cursor $cursor, $currentLineNumber)
+    public function shouldLastLineBeBlank(Cursor $cursor, int $currentLineNumber): bool
     {
         return true;
     }

@@ -7,10 +7,7 @@ namespace JohnnyHuy\Laravel\Markdown\Tests\Laravel;
 use GrahamCampbell\TestBenchCore\LaravelTrait;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use JohnnyHuy\Laravel\Block\Parser\ColorParser;
-use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
 use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
-use JohnnyHuy\Laravel\Inline\Parser\GistParser;
-use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
 use JohnnyHuy\Laravel\UsefulCommonMarkExtension;
 use League\CommonMark\Environment;
 
@@ -26,9 +23,7 @@ class ServiceProviderTest extends BaseTestCase
 
     public function testMarkdownParserIsInjectable()
     {
-        $this->assertIsInjectable(YouTubeParser::class);
-        $this->assertIsInjectable(GistParser::class);
-        $this->assertIsInjectable(CodepenParser::class);
+        $this->assertIsInjectable(ColorParser::class);
     }
 
     public function testMarkdownExtensionIsInjectable()
@@ -46,9 +41,12 @@ class ServiceProviderTest extends BaseTestCase
         /** @var Environment $environment */
         $environment = $this->app->get(Environment::class);
 
-        $this->assertTrue(in_array(resolve(YouTubeParser::class), $environment->getInlineParsers(), true));
-        $this->assertTrue(in_array(resolve(GistParser::class), $environment->getInlineParsers(), true));
-        $this->assertTrue(in_array(resolve(CodepenParser::class), $environment->getInlineParsers(), true));
-        $this->assertTrue(in_array(resolve(ColorParser::class), $environment->getBlockParsers(), true));
+        // Act
+        $extension = $environment->getExtensions()[1];
+
+        // Assert
+        $this->assertTrue($extension instanceof UsefulCommonMarkExtension);
+        $this->assertTrue(is_object($extension));
+        $this->assertTrue(in_array(resolve(ColorParser::class), $extension->blockParsers, false));
     }
 }

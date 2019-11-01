@@ -3,7 +3,7 @@
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
 use InvalidArgumentException;
-use JohnnyHuy\Laravel\Inline\Element\Color;
+use JohnnyHuy\Laravel\Inline\Element\InlineColor;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -11,8 +11,9 @@ use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
+use League\CommonMark\Util\ConfigurationInterface;
 
-class ColorRenderer implements InlineRendererInterface, ConfigurationAwareInterface
+class ColorInlineRenderer implements InlineRendererInterface, ConfigurationAwareInterface
 {
     /**
      * @var Configuration
@@ -27,7 +28,7 @@ class ColorRenderer implements InlineRendererInterface, ConfigurationAwareInterf
      */
     public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
     {
-        if (!($inline instanceof Color)) {
+        if (!($inline instanceof InlineColor)) {
             throw new InvalidArgumentException('Incompatible inline type: ' . get_class($inline));
         }
 
@@ -39,9 +40,9 @@ class ColorRenderer implements InlineRendererInterface, ConfigurationAwareInterf
     }
 
     /**
-     * @param Configuration $configuration
+     * @param ConfigurationInterface $configuration
      */
-    public function setConfiguration(Configuration $configuration)
+    public function setConfiguration(ConfigurationInterface $configuration)
     {
         $this->config = $configuration;
     }

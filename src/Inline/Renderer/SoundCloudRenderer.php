@@ -11,7 +11,7 @@ use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 
-class SoundCloudRenderer implements InlineRendererInterface
+class SoundCloudRenderer implements InlineRendererInterface, GetContentInterface
 {
     /**
      * @var Configuration

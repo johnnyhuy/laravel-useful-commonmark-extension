@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Inline\Parser;
 
-use League\CommonMark\InlineParserContext;
 use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
-use League\CommonMark\Inline\Parser\AbstractInlineParser;
+use League\CommonMark\Inline\Parser\InlineParserInterface;
+use League\CommonMark\InlineParserContext;
 
-class SoundCloudParser extends AbstractInlineParser
+class SoundCloudParser implements InlineParserInterface
 {
     /**
      * @param InlineParserContext $inlineContext
      * @return bool
      */
-    public function parse(InlineParserContext $inlineContext)
+    public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
         $savedState = $cursor->saveState();
@@ -44,7 +44,7 @@ class SoundCloudParser extends AbstractInlineParser
     /**
      * @return string[]
      */
-    public function getCharacters()
+    public function getCharacters(): array
     {
         return [':'];
     }

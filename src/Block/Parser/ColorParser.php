@@ -4,24 +4,24 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Block\Parser;
 
-use League\CommonMark\Cursor;
+use JohnnyHuy\Laravel\Block\Element\BlockColor;
+use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
-use JohnnyHuy\Laravel\Block\Element\Color;
-use League\CommonMark\Block\Parser\AbstractBlockParser;
+use League\CommonMark\Cursor;
 
 /**
  * Text alignment parser class.
  *
  * @author Johnny Huynh <info@johnnyhuy.com>
  */
-class ColorParser extends AbstractBlockParser
+class ColorParser implements BlockParserInterface
 {
     /**
      * @param ContextInterface $context
      * @param Cursor $cursor
      * @return bool
      */
-    public function parse(ContextInterface $context, Cursor $cursor)
+    public function parse(ContextInterface $context, Cursor $cursor): bool
     {
         if ($cursor->isIndented()) {
             return false;
@@ -37,7 +37,7 @@ class ColorParser extends AbstractBlockParser
         }
 
         do {
-            if ($container instanceof Color) {
+            if ($container instanceof BlockColor) {
                 $context->setContainer($container);
                 $container->finalize($context, $context->getLineNumber());
                 $context->getBlockCloser()->setLastMatchedContainer($container);
@@ -54,7 +54,7 @@ class ColorParser extends AbstractBlockParser
             return false;
         }
 
-        $block = new Color();
+        $block = new BlockColor();
         $block->data['color'] = $color[1];
         $context->addBlock($block);
 
