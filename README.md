@@ -33,7 +33,7 @@ Instructions to install this extension to your Laravel project.
 ### Prerequisites
 
 - PHP >= 7.1
-- Laravel >= 5.5
+- Laravel >= 5.5 + or 6.0 +
 
 ### Installation
 
