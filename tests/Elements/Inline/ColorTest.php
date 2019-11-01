@@ -19,11 +19,11 @@ class ColorTest extends BaseTestCase
     {
         return [
             [":color-red *[Link](http://example.com)* Heading :color test\ntest", "<p><span style=\"color: red\"> <em><a href=\"http://example.com\">Link</a></em> Heading </span> test\ntest</p>"],
-//            [":color-155,123,422 red **Heading** :color\ntest", "<p><span style=\"color: rgb(155,123,422)\"> red <strong>Heading</strong> </span>\ntest</p>"],
-//            [':color-155,123,422,50 red **Heading** :color', '<p><span style="color: rgba(155,123,422,50)"> red <strong>Heading</strong> </span></p>'],
-//            ['testing :color-155,123,422,50 red **Heading** :color testing', '<p>testing <span style="color: rgba(155,123,422,50)"> red <strong>Heading</strong> </span> testing</p>'],
-//            ['testing :color-#333 red **Heading** :color testing', '<p>testing <span style="color: #333"> red <strong>Heading</strong> </span> testing</p>'],
-//            ['testing :color-#aaaaaa red **Heading** :color testing', '<p>testing <span style="color: #aaaaaa"> red <strong>Heading</strong> </span> testing</p>'],
+            [":color-155,123,422 red **Heading** :color\ntest", "<p><span style=\"color: rgb(155,123,422)\"> red <strong>Heading</strong> </span>\ntest</p>"],
+            [':color-155,123,422,50 red **Heading** :color', '<p><span style="color: rgba(155,123,422,50)"> red <strong>Heading</strong> </span></p>'],
+            ['testing :color-155,123,422,50 red **Heading** :color testing', '<p>testing <span style="color: rgba(155,123,422,50)"> red <strong>Heading</strong> </span> testing</p>'],
+            ['testing :color-#333 red **Heading** :color testing', '<p>testing <span style="color: #333"> red <strong>Heading</strong> </span> testing</p>'],
+            ['testing :color-#aaaaaa red **Heading** :color testing', '<p>testing <span style="color: #aaaaaa"> red <strong>Heading</strong> </span> testing</p>'],
         ];
     }
 
