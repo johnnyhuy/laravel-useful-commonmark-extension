@@ -52,9 +52,9 @@ class CloseColorParser implements InlineParserInterface, EnvironmentAwareInterfa
 
         $delimiterStack = $inlineContext->getDelimiterStack();
         $stackBottom = $opener->getPrevious();
-//        foreach ($this->environment->getInlineProcessors() as $inlineProcessor) {
-//            $inlineProcessor->processInlines($delimiterStack, $stackBottom);
-//        }
+
+        // Do the delimiter processor magic here!
+        $delimiterStack->processDelimiters($stackBottom, $this->environment->getDelimiterProcessors());
 
         if ($delimiterStack instanceof DelimiterStack) {
             $delimiterStack->removeAll($stackBottom);
