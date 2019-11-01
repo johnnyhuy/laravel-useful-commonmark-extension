@@ -29,7 +29,6 @@ class CodepenParser implements InlineParserInterface
         // The computer says no
         if (!$validate) {
             $cursor->restoreState($savedState);
-
             return false;
         }
 
