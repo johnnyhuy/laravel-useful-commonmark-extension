@@ -62,7 +62,7 @@ class SoundCloudTest extends BaseTestCase
      */
     public function testShouldRender($input, $output)
     {
-        // Mock the SoundCloud renderer so we don't have to do HTTP calls
+        // Arrange
         $mock = Mockery::mock(SoundCloudRenderer::class)
             ->makePartial()
             ->shouldReceive('getContent')
@@ -71,7 +71,10 @@ class SoundCloudTest extends BaseTestCase
             ->andReturn(file_get_contents(__DIR__ . '/../../Fakes/SoundCloudTrack.json'));
         $this->app->instance(SoundCloudRenderer::class, $mock->getMock());
 
+        // Act
         $html = $this->app->markdown->convertToHtml($input);
+
+        // Arrange
         $this->assertSame("$output\n", $html);
     }
 

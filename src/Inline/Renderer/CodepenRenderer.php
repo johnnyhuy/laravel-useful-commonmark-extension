@@ -11,7 +11,7 @@ use League\CommonMark\Inline\Element\AbstractWebResource;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 use League\CommonMark\Util\Configuration;
 
-class CodepenRenderer implements InlineRendererInterface
+class CodepenRenderer implements InlineRendererInterface, GetContentInterface
 {
     /**
      * @var Configuration
