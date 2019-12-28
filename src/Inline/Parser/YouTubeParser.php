@@ -23,22 +23,35 @@ class YouTubeParser implements InlineParserInterface
 
         // Regex to ensure that we got a valid YouTube url
         // and the required `youtube:` prefix exists
-        $regex = '/^(?:youtube)\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&#\s\?]+)(?:\?.[^\s]+)?/';
+        $regex = '/(?:youtube)\s(?:https?\:\/\/)?(?:www\.)?(?:youtube\.com\/watch|youtu\.be\/)([^\s]+)/';
         $validate = $cursor->match($regex);
 
         // The computer says no
         if (!$validate) {
             $cursor->restoreState($savedState);
-
             return false;
         }
 
-        $matches = [];
-        preg_match($regex, $validate, $matches);
-        $videoId = $matches[1];
+        $videoRegex = '/[^\s]*(?:v\=)([^\s\&]+)[^\s]*/';
+        $timeRegex = '/[^\s]*(?:t\=)([^\s\&]+)s[^\s]*/';
+        $timeContinueRegex = '/[^\s]*(?:time_continue\=)([^\s\&]+)[^\s]*/';
+        $videoMatches = [];
+        $timeMatches = [];
+        $timeContinueMatches = [];
+        preg_match($videoRegex, $validate, $videoMatches);
+        preg_match($timeRegex, $validate, $timeMatches);
+        preg_match($timeContinueRegex, $validate, $timeContinueMatches);
+        $videoId = $videoMatches[1];
+        $startTime = '';
+
+        if ($timeMatches) {
+            $startTime = "?start={$timeMatches[1]}";
+        } elseif ($timeContinueMatches) {
+            $startTime = "?start={$timeContinueMatches[1]}";
+        }
 
         // Generates a valid YouTube embed url with the parsed video id from the given url
-        $inlineContext->getContainer()->appendChild(new YouTube("https://www.youtube.com/embed/$videoId"));
+        $inlineContext->getContainer()->appendChild(new YouTube("https://www.youtube.com/embed/$videoId$startTime"));
 
         return true;
     }
