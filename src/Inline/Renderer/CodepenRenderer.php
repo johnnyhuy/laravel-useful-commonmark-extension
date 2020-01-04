@@ -33,7 +33,6 @@ class CodepenRenderer implements InlineRendererInterface, GetContentInterface
 
         // Use a oEmbed route to get codepen details
         $apiUrl = "https://codepen.io/api/oembed?url={$inline->getUrl()}&format=json";
-        
         $apiResponse = $this->getContent($apiUrl);
 
         //seems that the used codepen url is invalid

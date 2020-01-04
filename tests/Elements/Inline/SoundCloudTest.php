@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Markdown\Tests\Elements;
 
-use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
-use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use Mockery;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use PHPUnit\Framework\ExpectationFailedException;
+use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
@@ -63,16 +68,20 @@ class SoundCloudTest extends BaseTestCase
     public function testShouldRender($input, $output)
     {
         // Arrange
-        $mock = Mockery::mock(SoundCloudRenderer::class)
+        $rendererMock = Mockery::mock(SoundCloudRenderer::class)
             ->makePartial()
             ->shouldReceive('getContent')
             ->withAnyArgs()
             ->once()
             ->andReturn(file_get_contents(__DIR__ . '/../../Fakes/SoundCloudTrack.json'));
-        $this->app->instance(SoundCloudRenderer::class, $mock->getMock());
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new SoundCloudParser());
+        $environment->addInlineRenderer(SoundCloud::class, $rendererMock->getMock());
 
         // Act
-        $html = $this->app->markdown->convertToHtml($input);
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
 
         // Arrange
         $this->assertSame("$output\n", $html);
@@ -87,6 +96,17 @@ class SoundCloudTest extends BaseTestCase
      */
     public function testShouldNotRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new SoundCloudParser());
+        $environment->addInlineRenderer(SoundCloud::class, new SoundCloudRenderer() );
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 }

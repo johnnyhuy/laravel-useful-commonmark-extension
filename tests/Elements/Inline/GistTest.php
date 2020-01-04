@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Markdown\Tests\Elements\Inline;
 
-use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use JohnnyHuy\Laravel\Inline\Element\Gist;
+use JohnnyHuy\Laravel\Inline\Parser\GistParser;
+use JohnnyHuy\Laravel\Inline\Renderer\GistRenderer;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
 use PHPUnit\Framework\ExpectationFailedException;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
@@ -48,7 +54,18 @@ class GistTest extends BaseTestCase
      */
     public function testShouldRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new GistParser());
+        $environment->addInlineRenderer(Gist::class, new GistRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 
     /**
@@ -60,6 +77,17 @@ class GistTest extends BaseTestCase
      */
     public function testShouldNotRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new GistParser());
+        $environment->addInlineRenderer(Gist::class, new GistRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 }
