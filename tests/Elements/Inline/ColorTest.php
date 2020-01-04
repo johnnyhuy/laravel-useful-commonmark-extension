@@ -4,8 +4,16 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Markdown\Tests\Elements\Inline;
 
-use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
+use JohnnyHuy\Laravel\Block\Parser\ColorParser;
+use JohnnyHuy\Laravel\Inline\Element\InlineColor;
+use JohnnyHuy\Laravel\Inline\Parser\CloseColorParser;
+use JohnnyHuy\Laravel\Inline\Parser\OpenColorParser;
+use JohnnyHuy\Laravel\Inline\Renderer\ColorInlineRenderer;
 use PHPUnit\Framework\ExpectationFailedException;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
@@ -46,7 +54,19 @@ class ColorTest extends BaseTestCase
      */
     public function testShouldRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new CloseColorParser());
+        $environment->addInlineParser(new OpenColorParser());
+        $environment->addInlineRenderer(InlineColor::class, new ColorInlineRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 
     /**
@@ -58,6 +78,18 @@ class ColorTest extends BaseTestCase
      */
     public function testShouldNotRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new CloseColorParser());
+        $environment->addInlineParser(new OpenColorParser());
+        $environment->addInlineRenderer(InlineColor::class, new ColorInlineRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 }

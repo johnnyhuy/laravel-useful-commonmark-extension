@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel\Markdown\Tests\Elements\Block;
 
-use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
+use JohnnyHuy\Laravel\Block\Element\TextAlignment;
+use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
 use PHPUnit\Framework\ExpectationFailedException;
+use JohnnyHuy\Laravel\Markdown\Tests\BaseTestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
@@ -48,7 +54,18 @@ class TextAlignmentTest extends BaseTestCase
      */
     public function testShouldRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addBlockParser(new TextAlignmentParser());
+        $environment->addBlockRenderer(TextAlignment::class, new TextAlignmentRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 
     /**
@@ -60,6 +77,17 @@ class TextAlignmentTest extends BaseTestCase
      */
     public function testShouldNotRender($input, $output)
     {
-        $this->assertSame("$output\n", $this->app->markdown->convertToHtml($input));
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addBlockParser(new TextAlignmentParser());
+        $environment->addBlockRenderer(TextAlignment::class, new TextAlignmentRenderer());
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse($input));
+
+        // Arrange
+        $this->assertSame("$output\n", $html);
     }
 }

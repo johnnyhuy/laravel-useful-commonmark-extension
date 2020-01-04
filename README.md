@@ -177,7 +177,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt urna m
 
 ## Contribution
 
-- Project derived from [Graham Campbell](https://github.com/GrahamCampbell)'s [emoji parser](https://github.com/AltThree/Emoji) for Laravel 5.
+- Project derived from [Graham Campbell](https://github.com/GrahamCampbell)'s [emoji parser](https://github.com/AltThree/Emoji) for Laravel
 - **Johnny Huynh** - Initial changes
 
 ## License
