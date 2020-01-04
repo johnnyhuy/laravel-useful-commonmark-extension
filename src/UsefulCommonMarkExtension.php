@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace JohnnyHuy\Laravel;
 
 use JohnnyHuy\Laravel\Inline\Element\Gist;
-use Illuminate\Contracts\Container\Container;
 use JohnnyHuy\Laravel\Inline\Element\Codepen;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
 use JohnnyHuy\Laravel\Block\Element\BlockColor;
@@ -33,7 +32,6 @@ use JohnnyHuy\Laravel\Block\Renderer\ColorBlockRenderer;
 use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
 use JohnnyHuy\Laravel\Inline\Renderer\ColorInlineRenderer;
 use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
-use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * This is the useful CommonMark extension class.
@@ -43,85 +41,31 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 class UsefulCommonMarkExtension implements ExtensionInterface
 {
     /**
-     * @var array
-     */
-    public $inlineParsers;
-
-    /**
-     * @var array
-     */
-    public $inlineRenderers;
-
-    /**
-     * @var array
-     */
-    public $blockParsers;
-
-    /**
-     * @var array
-     */
-    public $blockRenderers;
-
-    /**
-     * Create the instances here for Laravel container injection.
-     * This is needed to allow Laravel to inject dependencies.
-     *
-     * @param Container $container
-     * @throws BindingResolutionException
-     */
-    public function __construct(Container $container)
-    {
-        $this->inlineParsers = [
-            $container->make(GistParser::class),
-            $container->make(CodepenParser::class),
-            $container->make(YouTubeParser::class),
-            $container->make(SoundCloudParser::class),
-            $container->make(OpenColorParser::class),
-            $container->make(CloseColorParser::class),
-        ];
-
-        $this->inlineRenderers = [
-            Gist::class => $container->make(GistRenderer::class),
-            Codepen::class => $container->make(CodepenRenderer::class),
-            YouTube::class => $container->make(YouTubeRenderer::class),
-            SoundCloud::class => $container->make(SoundCloudRenderer::class),
-            InlineColor::class => $container->make(ColorInlineRenderer::class)
-        ];
-
-        $this->blockParsers = [
-            $container->make(TextAlignmentParser::class),
-            $container->make(ColorParser::class),
-        ];
-
-        $this->blockRenderers = [
-            TextAlignment::class => $container->make(TextAlignmentRenderer::class),
-            BlockColor::class => $container->make(ColorBlockRenderer::class),
-            FencedCode::class => $container->make(FencedCodeRenderer::class),
-            IndentedCode::class => $container->make(IndentedCodeRenderer::class),
-        ];
-    }
-
-    /**
      * Register the actual extensions to the framework.
      *
      * @param ConfigurableEnvironmentInterface $environment
      */
     public function register(ConfigurableEnvironmentInterface $environment): void
     {
-        foreach ($this->blockParsers as $blockParser) {
-            $environment->addBlockParser($blockParser);
-        }
+        $environment->addBlockParser(new TextAlignmentParser());
+        $environment->addBlockParser(new ColorParser());
 
-        foreach ($this->inlineParsers as $inlineParser) {
-            $environment->addInlineParser($inlineParser);
-        }
+        $environment->addBlockRenderer(TextAlignment::class, new TextAlignmentRenderer());
+        $environment->addBlockRenderer(BlockColor::class, new ColorBlockRenderer());
+        $environment->addBlockRenderer(FencedCode::class, new FencedCodeRenderer(['html', 'php', 'js', 'lua', 'python', 'go']), 10);
+        $environment->addBlockRenderer(IndentedCode::class, new IndentedCodeRenderer(['html', 'php', 'js', 'lua', 'python', 'go']), 10);
 
-        foreach ($this->blockRenderers as $class => $blockRenderer) {
-            $environment->addBlockRenderer($class, $blockRenderer);
-        }
+        $environment->addInlineParser(new GistParser());
+        $environment->addInlineParser(new CodepenParser());
+        $environment->addInlineParser(new YouTubeParser());
+        $environment->addInlineParser(new SoundCloudParser());
+        $environment->addInlineParser(new OpenColorParser());
+        $environment->addInlineParser(new CloseColorParser());
 
-        foreach ($this->inlineRenderers as $class => $inlineRenderer) {
-            $environment->addInlineRenderer($class, $inlineRenderer);
-        }
+        $environment->addInlineRenderer(Gist::class, new GistRenderer());
+        $environment->addInlineRenderer(Codepen::class, new CodepenRenderer());
+        $environment->addInlineRenderer(YouTube::class, new YouTubeRenderer());
+        $environment->addInlineRenderer(SoundCloud::class, new SoundCloudRenderer());
+        $environment->addInlineRenderer(InlineColor::class, new ColorInlineRenderer());
     }
 }
