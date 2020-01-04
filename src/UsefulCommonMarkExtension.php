@@ -4,32 +4,36 @@ declare(strict_types=1);
 
 namespace JohnnyHuy\Laravel;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Container\Container;
-use JohnnyHuy\Laravel\Block\Element\BlockColor;
-use JohnnyHuy\Laravel\Block\Element\TextAlignment;
-use JohnnyHuy\Laravel\Block\Parser\ColorParser;
-use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
-use JohnnyHuy\Laravel\Block\Renderer\ColorBlockRenderer;
-use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
-use JohnnyHuy\Laravel\Inline\Element\Codepen;
 use JohnnyHuy\Laravel\Inline\Element\Gist;
-use JohnnyHuy\Laravel\Inline\Element\InlineColor;
-use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
+use Illuminate\Contracts\Container\Container;
+use JohnnyHuy\Laravel\Inline\Element\Codepen;
 use JohnnyHuy\Laravel\Inline\Element\YouTube;
-use JohnnyHuy\Laravel\Inline\Parser\CloseColorParser;
-use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
+use JohnnyHuy\Laravel\Block\Element\BlockColor;
+use JohnnyHuy\Laravel\Block\Parser\ColorParser;
 use JohnnyHuy\Laravel\Inline\Parser\GistParser;
-use JohnnyHuy\Laravel\Inline\Parser\OpenColorParser;
-use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
+use League\CommonMark\Block\Element\FencedCode;
+use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
+use JohnnyHuy\Laravel\Inline\Element\InlineColor;
+use League\CommonMark\Block\Element\IndentedCode;
+use JohnnyHuy\Laravel\Block\Element\TextAlignment;
+use JohnnyHuy\Laravel\Inline\Parser\CodepenParser;
 use JohnnyHuy\Laravel\Inline\Parser\YouTubeParser;
-use JohnnyHuy\Laravel\Inline\Renderer\CodepenRenderer;
-use JohnnyHuy\Laravel\Inline\Renderer\ColorInlineRenderer;
 use JohnnyHuy\Laravel\Inline\Renderer\GistRenderer;
-use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
-use JohnnyHuy\Laravel\Inline\Renderer\YouTubeRenderer;
-use League\CommonMark\ConfigurableEnvironmentInterface;
 use League\CommonMark\Extension\ExtensionInterface;
+use JohnnyHuy\Laravel\Inline\Parser\OpenColorParser;
+use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
+use JohnnyHuy\Laravel\Inline\Parser\CloseColorParser;
+use JohnnyHuy\Laravel\Inline\Parser\SoundCloudParser;
+use JohnnyHuy\Laravel\Inline\Renderer\CodepenRenderer;
+use JohnnyHuy\Laravel\Inline\Renderer\YouTubeRenderer;
+use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
+use JohnnyHuy\Laravel\Block\Parser\TextAlignmentParser;
+use League\CommonMark\ConfigurableEnvironmentInterface;
+use JohnnyHuy\Laravel\Block\Renderer\ColorBlockRenderer;
+use JohnnyHuy\Laravel\Inline\Renderer\SoundCloudRenderer;
+use JohnnyHuy\Laravel\Inline\Renderer\ColorInlineRenderer;
+use JohnnyHuy\Laravel\Block\Renderer\TextAlignmentRenderer;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * This is the useful CommonMark extension class.
@@ -92,6 +96,8 @@ class UsefulCommonMarkExtension implements ExtensionInterface
         $this->blockRenderers = [
             TextAlignment::class => $container->make(TextAlignmentRenderer::class),
             BlockColor::class => $container->make(ColorBlockRenderer::class),
+            FencedCode::class => $container->make(FencedCodeRenderer::class),
+            IndentedCode::class => $container->make(IndentedCodeRenderer::class),
         ];
     }
 
