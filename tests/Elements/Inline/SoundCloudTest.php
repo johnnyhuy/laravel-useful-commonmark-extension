@@ -109,4 +109,20 @@ class SoundCloudTest extends BaseTestCase
         // Arrange
         $this->assertSame("$output\n", $html);
     }
+
+    public function testShouldReturnEmptyOnErrorURL()
+    {
+        // Arrange
+        $environment = Environment::createCommonMarkEnvironment();
+        $parser = new DocParser($environment);
+        $htmlRenderer = new HtmlRenderer($environment);
+        $environment->addInlineParser(new SoundCloudParser());
+        $environment->addInlineRenderer(SoundCloud::class, new SoundCloudRenderer() );
+
+        // Act
+        $html = $htmlRenderer->renderBlock($parser->parse(':soundcloud http://soundcloud.com/123123/123123123'));
+
+        // Arrange
+        $this->assertEquals("<p></p>\n", $html);
+    }
 }

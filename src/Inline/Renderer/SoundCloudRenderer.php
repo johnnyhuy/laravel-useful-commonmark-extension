@@ -3,6 +3,7 @@
 namespace JohnnyHuy\Laravel\Inline\Renderer;
 
 use ErrorException;
+use Exception;
 use JohnnyHuy\Laravel\Inline\Element\SoundCloud;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
@@ -37,8 +38,8 @@ class SoundCloudRenderer implements InlineRendererInterface, GetContentInterface
 
         // Seems that the used SoundCloud url is invalid
         // or SoundCloud is currently not available
-        if ($soundCloud === null) {
-            throw new ErrorException('SoundCloud request returned null: ' . $url);
+        if (empty($soundCloud)) {
+            return $soundCloud;
         }
 
         // Parse the embed response
@@ -54,6 +55,10 @@ class SoundCloudRenderer implements InlineRendererInterface, GetContentInterface
      */
     public function getContent(string $url): string
     {
-        return file_get_contents($url);
+        try {
+            return file_get_contents($url);
+        } catch (Exception $exception) {
+            return '';
+        }
     }
 }
