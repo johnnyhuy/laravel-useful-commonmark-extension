@@ -13,7 +13,6 @@ A Laravel PHP Composer packaged of useful CommonMark extensions for The PHP Leag
     - [Installation](#installation)
       - [Installing the Composer package](#installing-the-composer-package)
       - [Adding the Markdown extension to a config](#adding-the-markdown-extension-to-a-config)
-      - [(Optional) Adding the service provider to app config](#optional-adding-the-service-provider-to-app-config)
   - [Running the tests](#running-the-tests)
   - [Wiki](#wiki)
     - [Markdown features](#markdown-features)
@@ -55,18 +54,6 @@ Add `JohnnyHuy\Laravel\UsefulCommonMarkExtension::class` in `config/markdown.php
 'extensions' => [
     ...
     JohnnyHuy\Laravel\UsefulCommonMarkExtension::class
-    ...
-],
-```
-
-#### (Optional) Adding the service provider to app config
-
-If automatic package discovery is not enabled in your project, add the following line to register the service provider in your `config/app.php`. Here's an example:
-
-```php
-'providers' => [
-    ...
-    JohnnyHuy\Laravel\UsefulCommonMarkExtensionServiceProvider::class,
     ...
 ],
 ```
