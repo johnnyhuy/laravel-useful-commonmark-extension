@@ -38,15 +38,20 @@ class YouTubeParser implements InlineParserInterface
         $videoMatches = [];
         $timeMatches = [];
         $timeContinueMatches = [];
-        preg_match($videoRegex, $validate, $videoMatches);
-        preg_match($timeRegex, $validate, $timeMatches);
-        preg_match($timeContinueRegex, $validate, $timeContinueMatches);
+        $videoExists = preg_match($videoRegex, $validate, $videoMatches);
+        $timeMatchesExist = preg_match($timeRegex, $validate, $timeMatches);
+        $timeContinueMatchesExist = preg_match($timeContinueRegex, $validate, $timeContinueMatches);
+
+        if (!$videoExists) {
+            return false;
+        }
+        
         $videoId = $videoMatches[1];
         $startTime = '';
 
-        if ($timeMatches) {
+        if ($timeMatchesExist) {
             $startTime = "?start={$timeMatches[1]}";
-        } elseif ($timeContinueMatches) {
+        } elseif ($timeContinueMatchesExist) {
             $startTime = "?start={$timeContinueMatches[1]}";
         }
 

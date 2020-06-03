@@ -34,7 +34,11 @@ class GistParser implements InlineParserInterface
         }
 
         $matches = [];
-        preg_match($regex, $validate, $matches);
+        $exists = preg_match($regex, $validate, $matches);
+
+        if (!$exists) {
+            return false;
+        }
 
         // Return the given gist url to the renderer class
         $inlineContext->getContainer()->appendChild(new Gist($matches[1]));
