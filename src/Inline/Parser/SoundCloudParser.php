@@ -34,7 +34,11 @@ class SoundCloudParser implements InlineParserInterface
         }
 
         $matches = [];
-        preg_match($regex, $validate, $matches);
+        $exists = preg_match($regex, $validate, $matches);
+
+        if (!$exists) {
+            return false;
+        }
 
         $inlineContext->getContainer()->appendChild(new SoundCloud($matches[1]));
 

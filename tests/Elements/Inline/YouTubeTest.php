@@ -52,6 +52,7 @@ class YouTubeTest extends BaseTestCase
             [':youtube .youtube.com/watch?v=USL6P8haroY', '<p>:youtube .youtube.com/watch?v=USL6P8haroY</p>'],
             [':youtube .com/watch?v=USL6P8haroY', '<p>:youtube .com/watch?v=USL6P8haroY</p>'],
             [':youtube poop.com/watch?v=USL6P8haroY', '<p>:youtube poop.com/watch?v=USL6P8haroY</p>'],
+            [':youtube poop.com/watch?v=', '<p>:youtube poop.com/watch?v=</p>'],
         ];
     }
 
