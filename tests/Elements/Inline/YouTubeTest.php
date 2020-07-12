@@ -23,17 +23,17 @@ class YouTubeTest extends BaseTestCase
 {
     public function successfulStrings()
     {
-        $expected = '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs" type="text/html" frameborder="0"></iframe></span></p>';
+        $expected = '<p><span class="youtube-video"><iframe src="https://www.youtube.com/embed/52c_QSg64fs" type="text/html" frameborder="0"></iframe></span></p>';
 
         return [
             [':youtube http://www.youtube.com/watch?v=52c_QSg64fs', $expected],
             [':youtube https://www.youtube.com/watch?v=52c_QSg64fs', $expected],
             [':youtube http://youtube.com/watch?v=52c_QSg64fs', $expected],
             [':youtube youtube.com/watch?v=52c_QSg64fs', $expected],
-            [':youtube http://www.youtube.com/watch?time_continue=10&v=52c_QSg64fs', '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
-            [':youtube http://www.youtube.com/watch?t=10s&v=52c_QSg64fs', '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
-            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs&t=10s', '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
-            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs&t=10s&something=123123123SDqweas', '<p><span class="youtube-video"><iframe width="640" height="390" src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
+            [':youtube http://www.youtube.com/watch?time_continue=10&v=52c_QSg64fs', '<p><span class="youtube-video"><iframe src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
+            [':youtube http://www.youtube.com/watch?t=10s&v=52c_QSg64fs', '<p><span class="youtube-video"><iframe src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
+            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs&t=10s', '<p><span class="youtube-video"><iframe src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
+            [':youtube http://www.youtube.com/watch?v=52c_QSg64fs&t=10s&something=123123123SDqweas', '<p><span class="youtube-video"><iframe src="https://www.youtube.com/embed/52c_QSg64fs?start=10" type="text/html" frameborder="0"></iframe></span></p>'],
         ];
     }
 

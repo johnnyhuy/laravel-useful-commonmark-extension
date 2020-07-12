@@ -33,8 +33,6 @@ class YouTubeRenderer implements InlineRendererInterface, ConfigurationAwareInte
 
         // Create a new iframe with the given youtube url
         $iframe = new HtmlElement('iframe', [
-            'width' => 640,
-            'height' => 390,
             'src' => $inline->getUrl(),
             'type' => "text/html",
             'frameborder' => 0,
