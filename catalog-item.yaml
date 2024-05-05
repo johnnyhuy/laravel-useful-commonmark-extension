@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: laravel-useful-commonmark-extension
+  title: Laravel Useful CommonMark Extension
+  description: A useful CommonMark extension for Laravel
+  tags:
+    - laravel
+    - php
+spec:
+  type: library
+  lifecycle: production
+  owner: johnnyhuy
